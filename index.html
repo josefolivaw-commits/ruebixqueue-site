@@ -185,7 +185,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
   .hero__in{grid-template-columns:1fr;gap:44px}
 }
 
-/* --- SIGNATURE: the cube ------------------------------------ */
+/* --- SIGNATURE: the cube (weathered) ------------------------ */
 .cube-stage{
   perspective:1100px;
   display:grid;place-items:center;
@@ -193,26 +193,67 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 }
 .cube{
   --size:clamp(120px,20vw,190px);
+  --dust:#6B5B48;                     /* sun-bleached tan that everything drifts toward */
   width:var(--size);height:var(--size);
   position:relative;transform-style:preserve-3d;
   transform:rotateX(-22deg) rotateY(-30deg);
-  animation:tumble 34s linear infinite;
+  animation:tumble 46s linear infinite;
 }
+/* Wobbles rather than spinning on a clean axis — less showroom turntable */
 @keyframes tumble{
-  from{transform:rotateX(-22deg) rotateY(-30deg)}
-  to{transform:rotateX(-22deg) rotateY(330deg)}
+  0%  {transform:rotateX(-22deg) rotateY(-30deg)  rotateZ(0deg)}
+  25% {transform:rotateX(-17deg) rotateY(60deg)   rotateZ(1.5deg)}
+  50% {transform:rotateX(-26deg) rotateY(150deg)  rotateZ(-1deg)}
+  75% {transform:rotateX(-18deg) rotateY(240deg)  rotateZ(2deg)}
+  100%{transform:rotateX(-22deg) rotateY(330deg)  rotateZ(0deg)}
 }
 .cube__face{
   position:absolute;inset:0;
-  background:#08090C;
-  border-radius:10px;
+  background:#15120E;                 /* dusty plastic, not pure black */
+  border-radius:11px;
   display:grid;grid-template-columns:repeat(3,1fr);gap:7%;padding:7%;
-  box-shadow:0 0 0 1px rgba(255,255,255,.05);
+  box-shadow:0 0 0 1px rgba(0,0,0,.55), inset 0 0 18px rgba(0,0,0,.55);
 }
+/* Grime: uneven blotches, heavier in the corners where dirt collects */
+.cube__face::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(58% 42% at 18% 14%, rgba(150,130,96,.20), transparent 72%),
+    radial-gradient(46% 54% at 84% 72%, rgba(22,18,13,.42), transparent 70%),
+    radial-gradient(34% 30% at 58% 94%, rgba(140,120,88,.14), transparent 72%),
+    radial-gradient(40% 40% at 92% 8%,  rgba(20,16,12,.34), transparent 68%);
+}
+/* Fine grain over the whole face */
+.cube__face::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:3;pointer-events:none;
+  opacity:.30;mix-blend-mode:overlay;
+  background-size:78px 78px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='78' height='78'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='78' height='78' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* Stickers: faded vinyl, matte, edges eaten away */
 .cube__face i{
-  border-radius:18%;
-  background:var(--c);
-  box-shadow:inset 0 -2px 4px rgba(0,0,0,.35),inset 0 2px 3px rgba(255,255,255,.28);
+  position:relative;
+  border-radius:16%;
+  background:
+    linear-gradient(158deg, rgba(255,255,255,.09) 0%, transparent 42%, rgba(0,0,0,.20) 100%),
+    color-mix(in srgb, var(--c) 74%, var(--dust));
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.38),
+    inset 0 -3px 5px rgba(0,0,0,.32),
+    inset 0 2px 2px rgba(255,255,255,.09);   /* matte sheen, not wet plastic */
+}
+/* Per-sticker wear so no two are identical */
+.cube__face i:nth-child(2){background:linear-gradient(158deg,rgba(255,255,255,.07),transparent 45%),color-mix(in srgb,var(--c) 54%,var(--dust));border-radius:20% 14% 17% 15%}
+.cube__face i:nth-child(3){border-radius:14% 19% 13% 18%}
+.cube__face i:nth-child(4){background:linear-gradient(158deg,rgba(255,255,255,.05),transparent 40%),color-mix(in srgb,var(--c) 64%,var(--dust))}
+.cube__face i:nth-child(6){border-radius:18% 12% 21% 14%}
+.cube__face i:nth-child(7){background:linear-gradient(158deg,rgba(255,255,255,.08),transparent 44%),color-mix(in srgb,var(--c) 58%,var(--dust))}
+.cube__face i:nth-child(9){border-radius:13% 20% 15% 19%}
+/* Two stickers have peeled off entirely, exposing bare plastic */
+.f-right  i:nth-child(8),
+.f-back   i:nth-child(3){
+  background:#191510;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.6), inset 0 3px 7px rgba(0,0,0,.6);
 }
 .f-front {transform:translateZ(calc(var(--size)/2))}
 .f-back  {transform:rotateY(180deg) translateZ(calc(var(--size)/2))}
@@ -516,7 +557,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 
     <div class="disco rise">
       <!-- Edit release titles, years, and links here. -->
-      <a class="rel" href="https://ruebixqueue.bandcamp.com/music" target="_blank" rel="noopener" style="--c:var(--s-green)">
+      <a class="rel" href="https://ruebixqueue.bandcamp.com/album/living-the-dream" target="_blank" rel="noopener" style="--c:var(--s-green)">
         <span class="rel__chip"></span>
         <span class="rel__yr">2025</span>
         <span class="rel__title">Living the Dream</span>
@@ -524,7 +565,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
         <span class="rel__go" aria-hidden="true">&rarr;</span>
       </a>
 
-      <a class="rel" href="https://ruebixqueue.bandcamp.com/music" target="_blank" rel="noopener" style="--c:var(--s-yellow)">
+      <a class="rel" href="https://ruebixqueue.bandcamp.com/track/want-it-back-amanda-palmer-cover" target="_blank" rel="noopener" style="--c:var(--s-yellow)">
         <span class="rel__chip"></span>
         <span class="rel__yr">2020</span>
         <span class="rel__title">Want It Back</span>
