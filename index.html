@@ -1,281 +1,699 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rue Bix Queue | Synth-Pop & Digital Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0a0a0f;
-            --panel-bg: rgba(18, 18, 26, 0.7);
-            --neon-purple: #b000ff;
-            --neon-cyan: #00f0ff;
-            --text-main: #f0f0f5;
-            --text-muted: #8a8a9e;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rue Bix Queue — Dirty space pop, and the studio that builds it</title>
+<meta name="description" content="Rue Bix Queue is a two-piece post-apocalyptic rock duo out of St. Petersburg, Florida, and a production studio: AI-assisted video, traditional audio production, app development, and Power Platform builds on Microsoft 365.">
+<link rel="canonical" href="https://ruebixqueue.com/">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+<!-- Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ruebixqueue.com/">
+<meta property="og:title" content="Rue Bix Queue — Dirty space pop, and the studio that builds it">
+<meta property="og:description" content="Post-apocalyptic rock duo from St. Petersburg, FL — and a production studio: AI-assisted video, audio production, apps, and Power Platform.">
+<meta property="og:image" content="https://i.ytimg.com/vi/v4MGGbPM0Gk/maxresdefault.jpg">
+<meta name="twitter:card" content="summary_large_image">
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-        }
+<!-- Favicon: a cube face, drawn inline so there's no extra file to host -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E0F13'/%3E%3Cg%3E%3Crect x='5' y='5' width='6' height='6' rx='1.5' fill='%23E8453C'/%3E%3Crect x='13' y='5' width='6' height='6' rx='1.5' fill='%23F2C230'/%3E%3Crect x='21' y='5' width='6' height='6' rx='1.5' fill='%232F6FED'/%3E%3Crect x='5' y='13' width='6' height='6' rx='1.5' fill='%23F5842B'/%3E%3Crect x='13' y='13' width='6' height='6' rx='1.5' fill='%23EDEEF2'/%3E%3Crect x='21' y='13' width='6' height='6' rx='1.5' fill='%232FBF71'/%3E%3Crect x='5' y='21' width='6' height='6' rx='1.5' fill='%232F6FED'/%3E%3Crect x='13' y='21' width='6' height='6' rx='1.5' fill='%23E8453C'/%3E%3Crect x='21' y='21' width='6' height='6' rx='1.5' fill='%23F2C230'/%3E%3C/g%3E%3C/svg%3E">
 
-        .container { width: 100%; max-width: 900px; text-align: center; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://i.ytimg.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 10px; }
-        .tagline { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
+<style>
+/* ============================================================
+   TOKENS — the palette is a Rubik's cube: black plastic body,
+   six sticker colors. Each service owns one color.
+   ============================================================ */
+:root{
+  --plastic:#0E0F13;
+  --plastic-2:#15171F;
+  --plastic-3:#1C1F29;
+  --edge:#2A2E3B;
+  --paper:#EDEEF2;
+  --muted:#878DA0;
 
-        section {
-            margin-bottom: 50px;
-            width: 100%;
-        }
+  --s-red:#E8453C;
+  --s-orange:#F5842B;
+  --s-yellow:#F2C230;
+  --s-green:#2FBF71;
+  --s-blue:#2F6FED;
+  --s-white:#EDEEF2;
 
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--neon-cyan);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
 
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            text-align: left;
-        }
+  --pad:clamp(20px,5vw,72px);
+  --r:14px;
+}
 
-        .service-card {
-            background: var(--panel-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--plastic);
+  color:var(--paper);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
 
-        .service-card:hover {
-            border-color: var(--neon-purple);
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(176, 0, 255, 0.2);
-        }
+.wrap{max-width:1240px;margin:0 auto;padding-inline:var(--pad)}
 
-        .service-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
+/* Utility: mono eyebrow label */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 18px;
+  display:flex;align-items:center;gap:12px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--edge)}
 
-        .service-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:-.03em;margin:0}
 
-        /* Video Grid Layout */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:16px;z-index:99;background:var(--paper);color:var(--plastic);padding:10px 16px;border-radius:8px}
 
-        .video-item {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+:where(a,button,input,textarea):focus-visible{
+  outline:2px solid var(--s-yellow);outline-offset:3px;border-radius:6px;
+}
 
-        .video-item iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        }
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--plastic) 82%,transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+.nav.is-stuck{border-bottom-color:var(--edge)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:66px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-size:1.02rem}
+.brand svg{width:24px;height:24px;flex:none}
+.nav__links{display:flex;align-items:center;gap:28px}
+.nav__links a{
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.nav__links a:hover{color:var(--paper)}
+@media(max-width:720px){.nav__links{display:none}}
 
-        /* Contact Form */
-        .contact-form {
-            background: var(--panel-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 600px;
-            margin: 0 auto;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            text-align: left;
-        }
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:clamp(56px,10vw,110px) 0 clamp(48px,7vw,80px)}
+.hero__in{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center}
+.hero h1{
+  font-size:clamp(3.2rem,11vw,7.4rem);
+  text-transform:uppercase;
+}
+.hero h1 span{display:block}
+.hero h1 .lo{color:var(--muted)}
+.hero__lede{
+  font-size:clamp(1.05rem,2vw,1.3rem);
+  color:var(--muted);
+  max-width:44ch;
+  margin:26px 0 32px;
+}
+.hero__lede strong{color:var(--paper);font-weight:600}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 24px;border-radius:999px;text-decoration:none;border:1px solid var(--edge);
+  background:transparent;color:var(--paper);cursor:pointer;
+  transition:background .2s,border-color .2s,transform .2s,color .2s;
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--muted)}
+.btn--solid{background:var(--paper);color:var(--plastic);border-color:var(--paper);font-weight:500}
+.btn--solid:hover{background:#fff;border-color:#fff}
 
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-family: 'Orbitron', sans-serif;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
+@media(max-width:860px){
+  .hero__in{grid-template-columns:1fr;gap:44px}
+}
 
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(10, 10, 15, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-        }
+/* --- SIGNATURE: the cube ------------------------------------ */
+.cube-stage{
+  perspective:1100px;
+  display:grid;place-items:center;
+  min-height:min(46vw,340px);
+}
+.cube{
+  --size:clamp(120px,20vw,190px);
+  width:var(--size);height:var(--size);
+  position:relative;transform-style:preserve-3d;
+  transform:rotateX(-22deg) rotateY(-30deg);
+  animation:tumble 34s linear infinite;
+}
+@keyframes tumble{
+  from{transform:rotateX(-22deg) rotateY(-30deg)}
+  to{transform:rotateX(-22deg) rotateY(330deg)}
+}
+.cube__face{
+  position:absolute;inset:0;
+  background:#08090C;
+  border-radius:10px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:7%;padding:7%;
+  box-shadow:0 0 0 1px rgba(255,255,255,.05);
+}
+.cube__face i{
+  border-radius:18%;
+  background:var(--c);
+  box-shadow:inset 0 -2px 4px rgba(0,0,0,.35),inset 0 2px 3px rgba(255,255,255,.28);
+}
+.f-front {transform:translateZ(calc(var(--size)/2))}
+.f-back  {transform:rotateY(180deg) translateZ(calc(var(--size)/2))}
+.f-right {transform:rotateY(90deg)  translateZ(calc(var(--size)/2))}
+.f-left  {transform:rotateY(-90deg) translateZ(calc(var(--size)/2))}
+.f-top   {transform:rotateX(90deg)  translateZ(calc(var(--size)/2))}
+.f-bottom{transform:rotateX(-90deg) translateZ(calc(var(--size)/2))}
 
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-        }
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.sec{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--edge)}
+.sec__head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+  margin-bottom:clamp(28px,4vw,44px);flex-wrap:wrap;
+}
+.sec h2{font-size:clamp(2rem,5.2vw,3.4rem);text-transform:uppercase}
+.sec__note{color:var(--muted);font-size:.95rem;max-width:42ch;margin:0}
 
-        .form-submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, rgba(176, 0, 255, 0.3), rgba(0, 240, 255, 0.3));
-            border: 1px solid var(--neon-cyan);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+/* --- Video grid: laid out as a cube face --------------------- */
+.face{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(10px,1.4vw,16px);
+}
+.tile{
+  position:relative;
+  aspect-ratio:16/9;
+  border-radius:var(--r);
+  overflow:hidden;
+  background:var(--plastic-2);
+  border:1px solid var(--edge);
+  padding:0;margin:0;
+  cursor:pointer;
+  display:block;width:100%;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),border-color .3s,box-shadow .3s;
+}
+.tile::before{
+  content:"";position:absolute;inset-inline:0;top:0;height:3px;
+  background:var(--c);z-index:3;
+}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s;filter:saturate(.85) contrast(1.03)}
+.tile:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.tile:hover img{transform:scale(1.045);filter:saturate(1) contrast(1.03)}
+.tile--big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;height:100%;min-height:260px}
 
-        .form-submit-btn:hover {
-            background: linear-gradient(135deg, rgba(176, 0, 255, 0.5), rgba(0, 240, 255, 0.5));
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-        }
+.tile__play{
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:flex-end;
+  padding:16px;
+  background:linear-gradient(to top,rgba(6,7,10,.86) 0%,rgba(6,7,10,.15) 48%,rgba(6,7,10,.05) 100%);
+}
+.tile__label{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;text-align:left;color:var(--paper);
+}
+.tile__label b{
+  width:26px;height:26px;flex:none;border-radius:50%;
+  background:var(--c);color:#08090C;
+  display:grid;place-items:center;font-size:9px;
+}
+.tile--big .tile__label{font-family:var(--display);font-size:clamp(1.1rem,2.4vw,1.7rem);letter-spacing:-.02em;text-transform:none;font-weight:700}
 
-        /* Links & CTA */
-        .links-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
+.tile iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4}
 
-        .btn {
-            padding: 14px 24px;
-            background: rgba(25, 25, 38, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--text-main);
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
+/* The ninth square of the face: where to listen */
+.listen{
+  border-radius:var(--r);border:1px solid var(--edge);background:var(--plastic-2);
+  padding:18px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;
+  position:relative;overflow:hidden;
+}
+.listen::before{content:"";position:absolute;inset-inline:0;top:0;height:3px;background:var(--s-white)}
+.listen p{margin:0;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.listen ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.listen a{
+  text-decoration:none;font-size:.94rem;font-weight:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:7px 0;border-bottom:1px solid var(--edge);transition:color .2s,padding .2s;
+}
+.listen li:last-child a{border-bottom:0}
+.listen a span{color:var(--muted);transition:transform .2s}
+.listen a:hover{color:var(--s-yellow)}
+.listen a:hover span{transform:translateX(4px)}
 
-        .btn:hover {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.05);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        }
+@media(max-width:860px){
+  .face{grid-template-columns:repeat(2,1fr)}
+  .tile--big{grid-column:span 2;grid-row:auto;aspect-ratio:16/9}
+}
+@media(max-width:520px){
+  .face{grid-template-columns:1fr}
+  .tile--big{grid-column:span 1}
+}
 
-        footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-    </style>
+/* --- Services ------------------------------------------------ */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,18px)}
+@media(max-width:960px){.svcs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.svcs{grid-template-columns:1fr}}
+
+.svc{
+  background:var(--plastic-2);border:1px solid var(--edge);border-radius:var(--r);
+  padding:26px 24px 28px;transition:border-color .3s,background .3s,transform .3s;
+}
+.svc:hover{border-color:var(--c);background:var(--plastic-3);transform:translateY(-3px)}
+.svc__chip{
+  width:34px;height:34px;border-radius:9px;background:var(--c);margin-bottom:18px;
+  box-shadow:inset 0 -2px 4px rgba(0,0,0,.3),inset 0 2px 3px rgba(255,255,255,.28);
+}
+.svc h3{font-size:1.32rem;letter-spacing:-.02em;margin-bottom:10px}
+.svc p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.6}
+.svc--soon{border-style:dashed;background:transparent}
+.svc--soon h3{color:var(--muted)}
+
+.svc__tag{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--plastic);background:var(--s-white);padding:3px 9px;border-radius:999px;
+  display:inline-block;margin-top:16px;font-weight:500;
+}
+
+/* --- Discography ---------------------------------------------- */
+.disco{border-top:1px solid var(--edge)}
+.rel{
+  display:grid;
+  grid-template-columns:26px 76px 1fr auto 22px;
+  align-items:center;gap:clamp(12px,2vw,26px);
+  padding:22px 6px;
+  border-bottom:1px solid var(--edge);
+  text-decoration:none;
+  transition:background .25s,padding .25s;
+}
+.rel:hover{background:var(--plastic-2);padding-inline:16px 0}
+.rel__chip{
+  width:26px;height:26px;border-radius:7px;background:var(--c);
+  box-shadow:inset 0 -2px 4px rgba(0,0,0,.3),inset 0 2px 3px rgba(255,255,255,.28);
+}
+.rel__yr{font-family:var(--mono);font-size:.82rem;color:var(--muted);letter-spacing:.06em}
+.rel__title{font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,2.6vw,1.7rem);letter-spacing:-.02em;line-height:1.15}
+.rel__fmt{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--edge);padding:4px 10px;border-radius:999px;white-space:nowrap;
+}
+.rel__go{color:var(--muted);transition:transform .25s,color .25s;font-size:1.1rem}
+.rel:hover .rel__go{transform:translateX(5px);color:var(--c)}
+
+@media(max-width:640px){
+  .rel{grid-template-columns:22px 1fr 22px;row-gap:6px;padding:18px 4px}
+  .rel__yr{grid-column:2;order:-1}
+  .rel__title{grid-column:2}
+  .rel__fmt{grid-column:2;justify-self:start}
+  .rel:hover{padding-inline:4px}
+}
+
+/* --- Contact ------------------------------------------------- */
+.contact__in{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,64px)}
+@media(max-width:860px){.contact__in{grid-template-columns:1fr}}
+.form{display:grid;gap:16px}
+.field{display:grid;gap:7px}
+.field label{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea{
+  background:var(--plastic-2);border:1px solid var(--edge);border-radius:10px;
+  padding:13px 15px;color:var(--paper);font-family:var(--body);font-size:1rem;
+  transition:border-color .2s;width:100%;
+}
+.field input:focus,.field textarea:focus{border-color:var(--s-blue);outline:none}
+.field textarea{min-height:140px;resize:vertical}
+.form .btn{justify-content:center;margin-top:6px}
+
+.contact__side p{color:var(--muted)}
+.contact__side a{color:var(--s-yellow)}
+
+/* --- Footer -------------------------------------------------- */
+.foot{border-top:1px solid var(--edge);padding:34px 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.foot__in{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.foot__links{display:flex;flex-wrap:wrap;gap:8px 18px}
+.foot a{text-decoration:none;transition:color .2s}
+.foot a:hover{color:var(--paper)}
+
+/* --- Load-in: one orchestrated moment ------------------------ */
+.rise{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.rise.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .cube{animation:none}
+  .rise{opacity:1;transform:none;transition:none}
+  *{transition-duration:.01ms !important}
+}
+</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Rue Bix Queue</h1>
-            <div class="tagline">Synth-Pop Act & Advanced Digital Solutions</div>
-        </header>
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="6" fill="#08090C"/>
+        <rect x="5" y="5" width="6" height="6" rx="1.5" fill="#E8453C"/>
+        <rect x="13" y="5" width="6" height="6" rx="1.5" fill="#F2C230"/>
+        <rect x="21" y="5" width="6" height="6" rx="1.5" fill="#2F6FED"/>
+        <rect x="5" y="13" width="6" height="6" rx="1.5" fill="#F5842B"/>
+        <rect x="13" y="13" width="6" height="6" rx="1.5" fill="#EDEEF2"/>
+        <rect x="21" y="13" width="6" height="6" rx="1.5" fill="#2FBF71"/>
+        <rect x="5" y="21" width="6" height="6" rx="1.5" fill="#2F6FED"/>
+        <rect x="13" y="21" width="6" height="6" rx="1.5" fill="#E8453C"/>
+        <rect x="21" y="21" width="6" height="6" rx="1.5" fill="#F2C230"/>
+      </svg>
+      Rue Bix Queue
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#watch">Watch</a>
+      <a href="#releases">Releases</a>
+      <a href="#services">Services</a>
+      <a href="#store">Store</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-        <!-- Digital Solutions & Consulting Section -->
-        <section>
-            <h2>Digital Solutions & Development</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Power Platform Development</h3>
-                    <p>Custom canvas apps, automated workflows, and data solutions built across Power Apps, Power Automate, and SharePoint to optimize operations.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Production Command Centers</h3>
-                    <p>Tailored manufacturing execution apps, defect-tracking dashboards, and shop floor tooling designed to streamline business efficiency.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Multimedia Content Creation</h3>
-                    <p>Unique visual identities, audio mastering, custom branding, and cinematic digital media development for modern acts and enterprises.</p>
-                </div>
-            </div>
-        </section>
+<main id="main">
 
-        <!-- Music & Video Section -->
-        <section>
-            <h2>Sound & Vision</h2>
-            <div class="video-grid">
-                <div class="video-item"><iframe src="https://www.youtube.com/embed/wCzLQqt8RBQ?si=WOSfTEgOSsK-E119" allowfullscreen></iframe></div>
-                <div class="video-item"><iframe src="https://www.youtube.com/embed/QtFzhKtPaJc?si=Ts_2L4TmnCNpy7kz" allowfullscreen></iframe></div>
-                <div class="video-item"><iframe src="https://www.youtube.com/embed/l5TFyTTOY8Q?si=xiRz7aoNi_dv0ooM" allowfullscreen></iframe></div>
-                <div class="video-item"><iframe src="https://www.youtube.com/embed/SPiAznH_Jrg?si=ZTDE48c6YacLj8C5" allowfullscreen></iframe></div>
-                <div class="video-item"><iframe src="https://www.youtube.com/embed/v4MGGbPM0Gk?si=fERrUXQuTOBRA8NR" allowfullscreen></iframe></div>
-            </div>
-
-            <div class="links-container" style="margin-top: 30px;">
-                <a href="https://open.spotify.com/artist/0aK1011QLIqiWWn7C0FDXm" target="_blank" class="btn">Spotify</a>
-                <a href="https://music.apple.com/us/artist/rue-bix-queue/1453885497" target="_blank" class="btn">Apple Music</a>
-                <a href="https://ruebixqueue.bandcamp.com/music" target="_blank" class="btn">Bandcamp</a>
-                <a href="https://on.soundcloud.com/oN7nWY3sAkOlan6vbu" target="_blank" class="btn">SoundCloud</a>
-            </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section>
-            <h2>Inquiries & Consulting</h2>
-            <div class="contact-form">
-                <form action="https://formspree.io/f/mzepazkn" method="POST">
-                    <div class="form-group">
-                        <label for="name">Your Name / Company</label>
-                        <input type="text" id="name" name="name" required placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="name@company.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Project Details / Message</label>
-                        <textarea id="message" name="message" rows="4" required placeholder="Tell us about your project or Power Platform needs..."></textarea>
-                    </div>
-                    <button type="submit" class="form-submit-btn">Send Message</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            &copy; 2026 Rue Bix Queue. All rights reserved.
-        </footer>
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div>
+      <p class="eyebrow">Dirty space pop · St. Petersburg, FL</p>
+      <h1><span>Rue Bix</span><span class="lo">Queue</span></h1>
+      <p class="hero__lede">
+        A two-piece post-apocalyptic rock duo — and the studio behind it. We make our own
+        records and videos, then do the same for everyone else: <strong>AI-assisted video,
+        hands-on audio production, apps, and Power Platform builds on Microsoft&nbsp;365</strong>.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#watch">Watch the videos</a>
+        <a class="btn" href="#services">See what we do &rarr;</a>
+      </div>
     </div>
 
+    <div class="cube-stage" aria-hidden="true">
+      <div class="cube">
+        <div class="cube__face f-front"></div>
+        <div class="cube__face f-back"></div>
+        <div class="cube__face f-right"></div>
+        <div class="cube__face f-left"></div>
+        <div class="cube__face f-top"></div>
+        <div class="cube__face f-bottom"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WATCH ==================== -->
+<section class="sec" id="watch">
+  <div class="wrap">
+    <div class="sec__head rise">
+      <div>
+        <p class="eyebrow">Sound &amp; Vision</p>
+        <h2>Watch</h2>
+      </div>
+      <p class="sec__note">Videos load only when you press play, so the page stays fast.</p>
+    </div>
+    <div class="face rise" id="face">
+
+      <button class="tile tile--big" type="button" data-yt="v4MGGbPM0Gk" data-title="Something Better" style="--c:var(--s-red)" aria-label="Play Something Better">
+        <img src="https://i.ytimg.com/vi/v4MGGbPM0Gk/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/v4MGGbPM0Gk/hqdefault.jpg'" alt="" width="1280" height="720">
+        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Something Better</span></span>
+      </button>
+
+      <button class="tile" type="button" data-yt="SPiAznH_Jrg" data-title="Dreadmill" style="--c:var(--s-blue)" aria-label="Play Dreadmill">
+        <img src="https://i.ytimg.com/vi/SPiAznH_Jrg/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/SPiAznH_Jrg/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Dreadmill</span></span>
+      </button>
+
+      <button class="tile" type="button" data-yt="wCzLQqt8RBQ" data-title="Picture" style="--c:var(--s-yellow)" aria-label="Play Picture">
+        <img src="https://i.ytimg.com/vi/wCzLQqt8RBQ/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/wCzLQqt8RBQ/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Picture</span></span>
+      </button>
+
+      <button class="tile" type="button" data-yt="QtFzhKtPaJc" data-title="Living the Dream" style="--c:var(--s-green)" aria-label="Play Living the Dream">
+        <img src="https://i.ytimg.com/vi/QtFzhKtPaJc/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/QtFzhKtPaJc/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Living the Dream</span></span>
+      </button>
+
+      <button class="tile" type="button" data-yt="l5TFyTTOY8Q" data-title="Wake Me Up" style="--c:var(--s-orange)" aria-label="Play Wake Me Up">
+        <img src="https://i.ytimg.com/vi/l5TFyTTOY8Q/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/l5TFyTTOY8Q/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Wake Me Up</span></span>
+      </button>
+
+      <div class="listen">
+        <p>Listen everywhere</p>
+        <ul>
+          <li><a href="https://open.spotify.com/artist/0aK1011QLIqiWWn7C0FDXm" target="_blank" rel="noopener">Spotify<span>&rarr;</span></a></li>
+          <li><a href="https://music.apple.com/us/artist/rue-bix-queue/1453885497" target="_blank" rel="noopener">Apple Music<span>&rarr;</span></a></li>
+          <li><a href="https://ruebixqueue.bandcamp.com/music" target="_blank" rel="noopener">Bandcamp<span>&rarr;</span></a></li>
+          <li><a href="https://soundcloud.com/ruebixqueue" target="_blank" rel="noopener">SoundCloud<span>&rarr;</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RELEASES ==================== -->
+<section class="sec" id="releases">
+  <div class="wrap">
+    <div class="sec__head rise">
+      <div>
+        <p class="eyebrow">Discography</p>
+        <h2>Releases</h2>
+      </div>
+      <p class="sec__note">Everything is on Bandcamp, including the high-quality downloads.</p>
+    </div>
+
+    <div class="disco rise">
+      <!-- Edit release titles, years, and links here. -->
+      <a class="rel" href="https://ruebixqueue.bandcamp.com/music" target="_blank" rel="noopener" style="--c:var(--s-green)">
+        <span class="rel__chip"></span>
+        <span class="rel__yr">2025</span>
+        <span class="rel__title">Living the Dream</span>
+        <span class="rel__fmt">Single</span>
+        <span class="rel__go" aria-hidden="true">&rarr;</span>
+      </a>
+
+      <a class="rel" href="https://ruebixqueue.bandcamp.com/music" target="_blank" rel="noopener" style="--c:var(--s-yellow)">
+        <span class="rel__chip"></span>
+        <span class="rel__yr">2020</span>
+        <span class="rel__title">Want It Back</span>
+        <span class="rel__fmt">Amanda Palmer cover</span>
+        <span class="rel__go" aria-hidden="true">&rarr;</span>
+      </a>
+
+      <a class="rel" href="https://ruebixqueue.bandcamp.com/album/critical-thinking" target="_blank" rel="noopener" style="--c:var(--s-red)">
+        <span class="rel__chip"></span>
+        <span class="rel__yr">2018</span>
+        <span class="rel__title">Critical Thinking</span>
+        <span class="rel__fmt">Debut album</span>
+        <span class="rel__go" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec__head rise">
+      <div>
+        <p class="eyebrow">Six faces, one studio</p>
+        <h2>What we do</h2>
+      </div>
+      <p class="sec__note">Same crew that made everything above. Tell us which face you need turned.</p>
+    </div>
+
+    <div class="svcs">
+      <article class="svc rise" style="--c:var(--s-red)">
+        <div class="svc__chip"></div>
+        <h3>AI video production</h3>
+        <p>Concept to finished cut. We use generative tools for imagery, motion, and scene work, then edit and grade by hand so it reads as a film rather than a demo.</p>
+      </article>
+
+      <article class="svc rise" style="--c:var(--s-orange)">
+        <div class="svc__chip"></div>
+        <h3>Audio production</h3>
+        <p>Tracking, editing, mixing, and mastering the traditional way. Records, singles, podcasts, voiceover, and sound design for picture.</p>
+      </article>
+
+      <article class="svc rise" style="--c:var(--s-blue)">
+        <div class="svc__chip"></div>
+        <h3>App development</h3>
+        <p>Custom web and mobile applications, built from your requirements and shipped with the documentation and handover your team actually needs.</p>
+      </article>
+
+      <article class="svc rise" style="--c:var(--s-green)">
+        <div class="svc__chip"></div>
+        <h3>Power Platform &amp; M365</h3>
+        <p>Canvas and model-driven apps, Power Automate flows, Dataverse, and SharePoint — wired into the Microsoft 365 tenant you already pay for.</p>
+      </article>
+
+      <article class="svc rise" style="--c:var(--s-yellow)">
+        <div class="svc__chip"></div>
+        <h3>Production command centers</h3>
+        <p>Shop-floor tooling for manufacturers: execution apps, defect tracking, and live dashboards that put the day's numbers on one screen.</p>
+      </article>
+
+      <article class="svc rise svc--soon" id="store" style="--c:var(--s-white)">
+        <div class="svc__chip"></div>
+        <h3>Merch store</h3>
+        <p>Shirts, prints, and physical records. The one face we haven't finished turning yet — leave your email below and we'll tell you when it opens.</p>
+        <span class="svc__tag">In progress</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="sec" id="contact">
+  <div class="wrap contact__in">
+    <div class="contact__side rise">
+      <p class="eyebrow">Start a project</p>
+      <h2>Tell us<br>what you're<br>making</h2>
+      <p style="margin-top:22px">
+        Records, videos, apps, or a dashboard your operations team has been asking for
+        since last year. Send a few lines about it and we'll come back with a real answer,
+        not a brochure.
+      </p>
+      <p>Prefer email? <a href="mailto:ruebixqueuetheband@gmail.com">ruebixqueuetheband@gmail.com</a></p>
+    </div>
+
+    <!-- Form posts to the same Formspree endpoint as the live site. -->
+    <form class="form rise" action="https://formspree.io/f/mzepazkn" method="POST">
+      <div class="field">
+        <label for="name">Name / company</label>
+        <input id="name" name="name" type="text" autocomplete="organization" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="msg">What do you need?</label>
+        <textarea id="msg" name="message" required></textarea>
+      </div>
+      <button class="btn btn--solid" type="submit">Send it</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>&copy; <span id="yr">2026</span> Rue Bix Queue · St. Petersburg, FL</span>
+    <span class="foot__links">
+      <a href="https://www.youtube.com/channel/UC31fzg1JrjMKTc6dQx18apg" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://open.spotify.com/artist/0aK1011QLIqiWWn7C0FDXm" target="_blank" rel="noopener">Spotify</a>
+      <a href="https://music.apple.com/us/artist/rue-bix-queue/1453885497" target="_blank" rel="noopener">Apple</a>
+      <a href="https://ruebixqueue.bandcamp.com/music" target="_blank" rel="noopener">Bandcamp</a>
+      <a href="https://soundcloud.com/ruebixqueue" target="_blank" rel="noopener">SoundCloud</a>
+      <a href="https://www.deezer.com/en/artist/53766052" target="_blank" rel="noopener">Deezer</a>
+      <a href="https://www.facebook.com/ruebixqueuetheband" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://x.com/RueBixtheBand" target="_blank" rel="noopener">X</a>
+    </span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MusicGroup",
+  "name":"Rue Bix Queue",
+  "url":"https://ruebixqueue.com/",
+  "genre":["Dirty space pop","Post-apocalyptic rock","Indie rock"],
+  "description":"Two-piece post-apocalyptic rock duo from St. Petersburg, Florida, and a production studio for video, audio, apps, and Power Platform.",
+  "foundingLocation":{"@type":"Place","name":"St. Petersburg, Florida"},
+  "foundingDate":"2018",
+  "member":[
+    {"@type":"Person","name":"Rae Barlow","roleName":"Vocals"},
+    {"@type":"Person","name":"Josef Olivaw","roleName":"Music"}
+  ],
+  "album":[
+    {"@type":"MusicAlbum","name":"Critical Thinking","datePublished":"2018","albumProductionType":"https://schema.org/StudioAlbum","url":"https://ruebixqueue.bandcamp.com/album/critical-thinking"},
+    {"@type":"MusicAlbum","name":"Want It Back","datePublished":"2020","albumProductionType":"https://schema.org/CoverAlbum"},
+    {"@type":"MusicAlbum","name":"Living the Dream","datePublished":"2025","albumProductionType":"https://schema.org/StudioAlbum"}
+  ],
+  "sameAs":[
+    "https://www.youtube.com/channel/UC31fzg1JrjMKTc6dQx18apg",
+    "https://open.spotify.com/artist/0aK1011QLIqiWWn7C0FDXm",
+    "https://music.apple.com/us/artist/rue-bix-queue/1453885497",
+    "https://ruebixqueue.bandcamp.com/music",
+    "https://soundcloud.com/ruebixqueue",
+    "https://www.deezer.com/en/artist/53766052",
+    "https://www.facebook.com/ruebixqueuetheband",
+    "https://x.com/RueBixtheBand",
+    "https://www.reverbnation.com/ruebixqueue"
+  ]
+}
+</script>
+
+<script>
+/* ============================================================
+   Videos and streaming links live in the HTML above, so they
+   still render if JavaScript is blocked. This script only
+   swaps a thumbnail for the real player when you click it.
+   ============================================================ */
+
+/* ---- Click a thumbnail, swap in the player ------------------ */
+document.querySelectorAll(".tile").forEach(tile => {
+  tile.addEventListener("click", () => {
+    const id = tile.dataset.yt;
+    const frame = document.createElement("iframe");
+    frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+    frame.title = tile.dataset.title || "Rue Bix Queue video";
+    frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    frame.allowFullscreen = true;
+    tile.replaceChildren(frame);
+    tile.style.cursor = "default";
+  }, { once:true });
+});
+
+/* ---- Cube stickers ----------------------------------------- */
+const FACE_COLORS = ["--s-red","--s-blue","--s-green","--s-orange","--s-white","--s-yellow"];
+document.querySelectorAll(".cube__face").forEach((f, i) => {
+  for (let n = 0; n < 9; n++) {
+    const s = document.createElement("i");
+    s.style.setProperty("--c", `var(${FACE_COLORS[i]})`);
+    f.appendChild(s);
+  }
+});
+
+/* ---- Scroll reveal + sticky nav border ---------------------- */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+}, { threshold:.12, rootMargin:"0px 0px -60px" });
+document.querySelectorAll(".rise").forEach((el,i) => {
+  el.style.transitionDelay = `${Math.min(i,6) * 60}ms`;
+  io.observe(el);
+});
+
+const nav = document.getElementById("nav");
+addEventListener("scroll", () => nav.classList.toggle("is-stuck", scrollY > 12), { passive:true });
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
