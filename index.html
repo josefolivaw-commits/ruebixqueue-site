@@ -4,21 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rue Bix Queue — Dirty space pop, and the studio that builds it</title>
-<meta name="description" content="Rue Bix Queue is a two-piece post-apocalyptic rock duo out of St. Petersburg, Florida, and a production studio: AI-assisted video, traditional audio production, app development, and Power Platform builds on Microsoft 365.">
+<meta name="description" content="Rue Bix Queue is a two-piece post-apocalyptic synth-pop duo out of St. Petersburg, Florida, and a production studio: AI-assisted video, traditional audio production, app development, and Power Platform builds on Microsoft 365.">
 <link rel="canonical" href="https://ruebixqueue.com/">
+
+<!-- Social sharing -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Rue Bix Queue">
 <meta property="og:url" content="https://ruebixqueue.com/">
 <meta property="og:title" content="Rue Bix Queue — Dirty space pop, and the studio that builds it">
-<meta property="og:description" content="A two-piece post-apocalyptic rock duo out of St. Petersburg, Florida, and a production studio: AI-assisted video, audio production, and app development.">
-<meta property="og:image" content="https://ruebixqueue.com/assets/social-preview.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Two figures on an empty road facing a distant city skyline">
+<meta property="og:description" content="Post-apocalyptic synth-pop duo from St. Petersburg, FL — and a production studio: AI-assisted video, audio production, apps, and Power Platform.">
+<meta property="og:image" content="https://ruebixqueue.com/assets/banner.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1073">
+<meta property="og:image:alt" content="An empty highway running toward a hazy, distant skyline.">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- Favicon: a cube face, drawn inline so there's no extra file to host -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E0F13'/%3E%3Cg%3E%3Crect x='5' y='5' width='6' height='6' rx='1.5' fill='%23E8453C'/%3E%3Crect x='13' y='5' width='6' height='6' rx='1.5' fill='%23F2C230'/%3E%3Crect x='21' y='5' width='6' height='6' rx='1.5' fill='%232F6FED'/%3E%3Crect x='5' y='13' width='6' height='6' rx='1.5' fill='%23F5842B'/%3E%3Crect x='13' y='13' width='6' height='6' rx='1.5' fill='%23EDEEF2'/%3E%3Crect x='21' y='13' width='6' height='6' rx='1.5' fill='%232FBF71'/%3E%3Crect x='5' y='21' width='6' height='6' rx='1.5' fill='%232F6FED'/%3E%3Crect x='13' y='21' width='6' height='6' rx='1.5' fill='%23E8453C'/%3E%3Crect x='21' y='21' width='6' height='6' rx='1.5' fill='%23F2C230'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/banner.jpg" fetchpriority="high">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,10 +41,10 @@
   --paper:#EDEEF2;
   --muted:#878DA0;
 
-  --s-red:#E8453C;
+  --s-purple:#9A4FD8;
   --s-orange:#F5842B;
   --s-yellow:#F2C230;
-  --s-green:#2FBF71;
+  --s-green:#3A9161;
   --s-blue:#2F6FED;
   --s-white:#EDEEF2;
 
@@ -104,7 +107,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 .nav.is-stuck{border-bottom-color:var(--edge)}
 .nav__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:66px}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-size:1.02rem}
-.brand svg{width:24px;height:24px;flex:none}
+.brand img{height:30px;width:auto;flex:none}
 .nav__links{display:flex;align-items:center;gap:28px}
 .nav__links a{
   font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
@@ -116,7 +119,41 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 /* ============================================================
    HERO
    ============================================================ */
-.hero{padding:clamp(56px,10vw,110px) 0 clamp(48px,7vw,80px)}
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(72px,12vw,140px) 0 clamp(64px,9vw,110px);
+}
+/* The photograph */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:url("assets/banner.jpg") center 42%/cover no-repeat;
+  filter:saturate(.72) contrast(1.06) brightness(.88);
+}
+/* Scrim: keeps the type readable and blends the photo into the page */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(90deg,
+      rgba(14,15,19,.95) 0%,
+      rgba(14,15,19,.82) 34%,
+      rgba(14,15,19,.34) 68%,
+      rgba(14,15,19,.52) 100%),
+    linear-gradient(180deg,
+      rgba(14,15,19,.72) 0%,
+      rgba(14,15,19,.10) 26%,
+      rgba(14,15,19,.55) 74%,
+      var(--plastic) 100%);
+}
+@media(max-width:860px){
+  /* No side column on mobile, so the scrim goes uniform instead of left-weighted */
+  .hero::after{
+    background:linear-gradient(180deg,
+      rgba(14,15,19,.80) 0%,
+      rgba(14,15,19,.62) 30%,
+      rgba(14,15,19,.78) 70%,
+      var(--plastic) 100%);
+  }
+}
 .hero__in{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center}
 .hero h1{
   font-size:clamp(3.2rem,11vw,7.4rem);
@@ -370,18 +407,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 <header class="nav" id="nav">
   <div class="wrap nav__in">
     <a class="brand" href="#top">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <rect width="32" height="32" rx="6" fill="#08090C"/>
-        <rect x="5" y="5" width="6" height="6" rx="1.5" fill="#E8453C"/>
-        <rect x="13" y="5" width="6" height="6" rx="1.5" fill="#F2C230"/>
-        <rect x="21" y="5" width="6" height="6" rx="1.5" fill="#2F6FED"/>
-        <rect x="5" y="13" width="6" height="6" rx="1.5" fill="#F5842B"/>
-        <rect x="13" y="13" width="6" height="6" rx="1.5" fill="#EDEEF2"/>
-        <rect x="21" y="13" width="6" height="6" rx="1.5" fill="#2FBF71"/>
-        <rect x="5" y="21" width="6" height="6" rx="1.5" fill="#2F6FED"/>
-        <rect x="13" y="21" width="6" height="6" rx="1.5" fill="#E8453C"/>
-        <rect x="21" y="21" width="6" height="6" rx="1.5" fill="#F2C230"/>
-      </svg>
+      <img src="assets/logo.png" alt="" width="457" height="403">
       Rue Bix Queue
     </a>
     <nav class="nav__links" aria-label="Main">
@@ -403,7 +429,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
       <p class="eyebrow">Dirty space pop · St. Petersburg, FL</p>
       <h1><span>Rue Bix</span><span class="lo">Queue</span></h1>
       <p class="hero__lede">
-        A two-piece post-apocalyptic rock duo — and the studio behind it. We make our own
+        A two-piece post-apocalyptic synth-pop duo — and the studio behind it. We make our own
         records and videos, then do the same for everyone else: <strong>AI-assisted video,
         hands-on audio production, apps, and Power Platform builds on Microsoft&nbsp;365</strong>.
       </p>
@@ -438,18 +464,8 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
     </div>
     <div class="face rise" id="face">
 
-      <button class="tile tile--big" type="button" data-yt="v4MGGbPM0Gk" data-title="Something Better" style="--c:var(--s-red)" aria-label="Play Something Better">
-        <img src="https://i.ytimg.com/vi/v4MGGbPM0Gk/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/v4MGGbPM0Gk/hqdefault.jpg'" alt="" width="1280" height="720">
-        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Something Better</span></span>
-      </button>
-
-      <button class="tile" type="button" data-yt="SPiAznH_Jrg" data-title="Dreadmill" style="--c:var(--s-blue)" aria-label="Play Dreadmill">
-        <img src="https://i.ytimg.com/vi/SPiAznH_Jrg/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/SPiAznH_Jrg/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
-        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Dreadmill</span></span>
-      </button>
-
-      <button class="tile" type="button" data-yt="wCzLQqt8RBQ" data-title="Picture" style="--c:var(--s-yellow)" aria-label="Play Picture">
-        <img src="https://i.ytimg.com/vi/wCzLQqt8RBQ/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/wCzLQqt8RBQ/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+      <button class="tile tile--big" type="button" data-yt="wCzLQqt8RBQ" data-title="Picture" style="--c:var(--s-yellow)" aria-label="Play Picture">
+        <img src="https://i.ytimg.com/vi/wCzLQqt8RBQ/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/wCzLQqt8RBQ/hqdefault.jpg'" alt="" width="1280" height="720">
         <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Picture</span></span>
       </button>
 
@@ -461,6 +477,16 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
       <button class="tile" type="button" data-yt="l5TFyTTOY8Q" data-title="Wake Me Up" style="--c:var(--s-orange)" aria-label="Play Wake Me Up">
         <img src="https://i.ytimg.com/vi/l5TFyTTOY8Q/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/l5TFyTTOY8Q/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
         <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Wake Me Up</span></span>
+      </button>
+
+      <button class="tile" type="button" data-yt="SPiAznH_Jrg" data-title="Dreadmill" style="--c:var(--s-blue)" aria-label="Play Dreadmill">
+        <img src="https://i.ytimg.com/vi/SPiAznH_Jrg/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/SPiAznH_Jrg/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Dreadmill</span></span>
+      </button>
+
+      <button class="tile" type="button" data-yt="v4MGGbPM0Gk" data-title="Something Better" style="--c:var(--s-purple)" aria-label="Play Something Better">
+        <img src="https://i.ytimg.com/vi/v4MGGbPM0Gk/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/v4MGGbPM0Gk/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+        <span class="tile__play"><span class="tile__label"><b>&#9654;</b>Something Better</span></span>
       </button>
 
       <div class="listen">
@@ -489,7 +515,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
     </div>
 
     <div class="disco rise">
-      <!-- Edit release titles, years, and links here. -->
+      <!-- ⚠️ Edit release titles, years, and links here. -->
       <a class="rel" href="https://ruebixqueue.bandcamp.com/music" target="_blank" rel="noopener" style="--c:var(--s-green)">
         <span class="rel__chip"></span>
         <span class="rel__yr">2025</span>
@@ -506,7 +532,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
         <span class="rel__go" aria-hidden="true">&rarr;</span>
       </a>
 
-      <a class="rel" href="https://ruebixqueue.bandcamp.com/album/critical-thinking" target="_blank" rel="noopener" style="--c:var(--s-red)">
+      <a class="rel" href="https://ruebixqueue.bandcamp.com/album/critical-thinking" target="_blank" rel="noopener" style="--c:var(--s-purple)">
         <span class="rel__chip"></span>
         <span class="rel__yr">2018</span>
         <span class="rel__title">Critical Thinking</span>
@@ -529,7 +555,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
     </div>
 
     <div class="svcs">
-      <article class="svc rise" style="--c:var(--s-red)">
+      <article class="svc rise" style="--c:var(--s-purple)">
         <div class="svc__chip"></div>
         <h3>AI video production</h3>
         <p>Concept to finished cut. We use generative tools for imagery, motion, and scene work, then edit and grade by hand so it reads as a film rather than a demo.</p>
@@ -625,8 +651,8 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
   "@type":"MusicGroup",
   "name":"Rue Bix Queue",
   "url":"https://ruebixqueue.com/",
-  "genre":["Dirty space pop","Post-apocalyptic rock","Indie rock"],
-  "description":"Two-piece post-apocalyptic rock duo from St. Petersburg, Florida, and a production studio for video, audio, apps, and Power Platform.",
+  "genre":["Dirty space pop","Post-apocalyptic synth-pop","Synth-pop"],
+  "description":"Two-piece post-apocalyptic synth-pop duo from St. Petersburg, Florida, and a production studio for video, audio, apps, and Power Platform.",
   "foundingLocation":{"@type":"Place","name":"St. Petersburg, Florida"},
   "foundingDate":"2018",
   "member":[
@@ -654,8 +680,8 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 
 <script>
 /* ============================================================
-   Videos and streaming links live in the HTML above, so they
-   still render if JavaScript is blocked. This script only
+   Videos and streaming links now live in the HTML above, so
+   they still render if JavaScript is blocked. This script only
    swaps a thumbnail for the real player when you click it.
    ============================================================ */
 
@@ -674,7 +700,7 @@ document.querySelectorAll(".tile").forEach(tile => {
 });
 
 /* ---- Cube stickers ----------------------------------------- */
-const FACE_COLORS = ["--s-red","--s-blue","--s-green","--s-orange","--s-white","--s-yellow"];
+const FACE_COLORS = ["--s-purple","--s-blue","--s-green","--s-orange","--s-white","--s-yellow"];
 document.querySelectorAll(".cube__face").forEach((f, i) => {
   for (let n = 0; n < 9; n++) {
     const s = document.createElement("i");
