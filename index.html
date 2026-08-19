@@ -188,25 +188,26 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 /* --- SIGNATURE: the cube (weathered) ------------------------ */
 .cube-stage{
   perspective:1100px;
-  display:grid;place-items:center;
+  display:grid;place-items:center;align-content:center;gap:14px;
   min-height:min(46vw,340px);
 }
+.cube-hint{
+  margin:0;font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);opacity:.55;
+  transition:opacity .4s;user-select:none;
+}
+.cube-stage.touched .cube-hint{opacity:0}
 .cube{
   --size:clamp(120px,20vw,190px);
   --dust:#6B5B48;                     /* sun-bleached tan that everything drifts toward */
   width:var(--size);height:var(--size);
   position:relative;transform-style:preserve-3d;
   transform:rotateX(-22deg) rotateY(-30deg);
-  animation:tumble 46s linear infinite;
+  cursor:grab;touch-action:none;
+  border-radius:12px;
 }
-/* Wobbles rather than spinning on a clean axis — less showroom turntable */
-@keyframes tumble{
-  0%  {transform:rotateX(-22deg) rotateY(-30deg)  rotateZ(0deg)}
-  25% {transform:rotateX(-17deg) rotateY(60deg)   rotateZ(1.5deg)}
-  50% {transform:rotateX(-26deg) rotateY(150deg)  rotateZ(-1deg)}
-  75% {transform:rotateX(-18deg) rotateY(240deg)  rotateZ(2deg)}
-  100%{transform:rotateX(-22deg) rotateY(330deg)  rotateZ(0deg)}
-}
+.cube:active,.cube.is-grabbing{cursor:grabbing}
+.cube:focus-visible{outline:2px solid var(--s-yellow);outline-offset:14px}
 .cube__face{
   position:absolute;inset:0;
   background:#15120E;                 /* dusty plastic, not pure black */
@@ -436,7 +437,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .cube{animation:none}
+  /* The cube's drift is disabled in JS; dragging still works, since that's user-initiated. */
   .rise{opacity:1;transform:none;transition:none}
   *{transition-duration:.01ms !important}
 }
@@ -470,11 +471,9 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
       <p class="eyebrow">Dirty space pop · St. Petersburg, FL</p>
       <h1><span>Rue Bix</span><span class="lo">Queue</span></h1>
       <p class="hero__lede">
-        A two-piece post-apocalyptic synth-pop duo — and the minds behind it. We make our own
-        records and videos, and create apps when necessary to solve problems. We offer the same 
-        creativity and problem solving to everyone else: <strong>If you have a problem of any nature, 
-        reach out to us and we'll find a solution. Ideas, AI-assisted video,
-        hands-on audio production, apps, and Power Platform builds on Microsoft&nbsp;365 are some of what we offer</strong>.
+        A two-piece post-apocalyptic synth-pop duo — and the studio behind it. We make our own
+        records and videos, then do the same for everyone else: <strong>AI-assisted video,
+        hands-on audio production, apps, and Power Platform builds on Microsoft&nbsp;365</strong>.
       </p>
       <div class="hero__cta">
         <a class="btn btn--solid" href="#watch">Watch the videos</a>
@@ -482,8 +481,9 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
       </div>
     </div>
 
-    <div class="cube-stage" aria-hidden="true">
-      <div class="cube">
+    <div class="cube-stage" id="cubeStage">
+      <div class="cube" id="cube" tabindex="0"
+           aria-label="Rubik's cube. Drag it, or use the arrow keys, to turn it.">
         <div class="cube__face f-front"></div>
         <div class="cube__face f-back"></div>
         <div class="cube__face f-right"></div>
@@ -491,6 +491,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
         <div class="cube__face f-top"></div>
         <div class="cube__face f-bottom"></div>
       </div>
+      <p class="cube-hint" aria-hidden="true">Drag to turn</p>
     </div>
   </div>
 </section>
@@ -558,7 +559,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
     </div>
 
     <div class="disco rise">
-      <!-- Edit release titles, years, and links here. -->
+      <!-- ⚠️ Edit release titles, years, and links here. -->
       <a class="rel" href="https://ruebixqueue.bandcamp.com/album/living-the-dream" target="_blank" rel="noopener" style="--c:var(--s-green)">
         <span class="rel__chip"></span>
         <span class="rel__yr">2025</span>
@@ -649,7 +650,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
         since last year. Send a few lines about it and we'll come back with a real answer,
         not a brochure.
       </p>
-      <p>Prefer email? <a href="mailto:ruebixqueuetheband@gmail.com">JosefOlivaw@RueBixQueue.com</a></p>
+      <p>Prefer email? <a href="mailto:ruebixqueuetheband@gmail.com">ruebixqueuetheband@gmail.com</a></p>
     </div>
 
     <!-- Form posts to the same Formspree endpoint as the live site. -->
@@ -704,8 +705,8 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spac
   ],
   "album":[
     {"@type":"MusicAlbum","name":"Critical Thinking","datePublished":"2018","albumProductionType":"https://schema.org/StudioAlbum","url":"https://ruebixqueue.bandcamp.com/album/critical-thinking"},
-    {"@type":"MusicAlbum","name":"Want It Back","datePublished":"2020","albumProductionType":"https://schema.org/CoverAlbum"},
-    {"@type":"MusicAlbum","name":"Living the Dream","datePublished":"2025","albumProductionType":"https://schema.org/StudioAlbum"}
+    {"@type":"MusicAlbum","name":"Want It Back","datePublished":"2020","albumProductionType":"https://schema.org/CoverAlbum","url":"https://ruebixqueue.bandcamp.com/track/want-it-back-amanda-palmer-cover"},
+    {"@type":"MusicAlbum","name":"Living the Dream","datePublished":"2025","albumProductionType":"https://schema.org/StudioAlbum","url":"https://ruebixqueue.bandcamp.com/album/living-the-dream"}
   ],
   "sameAs":[
     "https://www.youtube.com/channel/UC31fzg1JrjMKTc6dQx18apg",
@@ -751,6 +752,84 @@ document.querySelectorAll(".cube__face").forEach((f, i) => {
     f.appendChild(s);
   }
 });
+
+/* ---- Cube: ambient drift + drag to turn --------------------- */
+(() => {
+  const cube  = document.getElementById("cube");
+  const stage = document.getElementById("cubeStage");
+  if (!cube) return;
+
+  const calm  = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (v,a,b) => v < a ? a : v > b ? b : v;
+
+  let rx = -22, ry = -30;          // current angles
+  let vx = 0,   vy = 0;            // spin left over from a flick
+  let dragging = false, lastX = 0, lastY = 0;
+  let idle = 0, t = 0, prev = performance.now();
+
+  const grab = e => {
+    dragging = true; idle = 0; vx = vy = 0;
+    lastX = e.clientX; lastY = e.clientY;
+    cube.classList.add("is-grabbing");
+    stage.classList.add("touched");
+    cube.setPointerCapture?.(e.pointerId);
+    e.preventDefault();
+  };
+  const move = e => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    ry += dx * 0.45;
+    rx -= dy * 0.45;
+    rx  = clamp(rx, -80, 80);
+    vy  = vy * 0.6 + dx * 0.45 * 0.4;   // smoothed release velocity
+    vx  = vx * 0.6 - dy * 0.45 * 0.4;
+  };
+  const drop = e => {
+    if (!dragging) return;
+    dragging = false;
+    cube.classList.remove("is-grabbing");
+    cube.releasePointerCapture?.(e.pointerId);
+  };
+
+  cube.addEventListener("pointerdown", grab);
+  addEventListener("pointermove", move, { passive:true });
+  addEventListener("pointerup", drop);
+  addEventListener("pointercancel", drop);
+
+  cube.addEventListener("keydown", e => {
+    const step = 9, k = e.key;
+    if (k === "ArrowLeft")  ry -= step;
+    else if (k === "ArrowRight") ry += step;
+    else if (k === "ArrowUp")    rx = clamp(rx - step, -80, 80);
+    else if (k === "ArrowDown")  rx = clamp(rx + step, -80, 80);
+    else return;
+    idle = 0; vx = vy = 0;
+    stage.classList.add("touched");
+    e.preventDefault();
+  });
+
+  function frame(now) {
+    const dt = Math.min(now - prev, 50); prev = now;
+
+    if (!dragging) {
+      idle += dt;
+      if (vx || vy) {                       // coast to a stop
+        ry += vy; rx = clamp(rx + vx, -80, 80);
+        vy *= 0.945; vx *= 0.945;
+        if (Math.abs(vy) < 0.01) vy = 0;
+        if (Math.abs(vx) < 0.01) vx = 0;
+      } else if (!calm && idle > 2600) {    // ease back into the slow drift
+        t  += dt;
+        ry += dt * 0.0072;
+        rx += ((-22 + Math.sin(t / 5200) * 4.5) - rx) * 0.012;
+      }
+    }
+    cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
 
 /* ---- Scroll reveal + sticky nav border ---------------------- */
 const io = new IntersectionObserver(es => {
