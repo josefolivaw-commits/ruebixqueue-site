@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rue Bix Queue Apps</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a spec-sheet portfolio. Narrow text column beside wide screenshots; each app is a numbered "sheet" with a status tag. */
+:root {
+  --paper: #F2F3F0;
+  --sheet: #FBFBF9;
+  --ink: #16191B;
+  --ink-2: #4A5258;
+  --rule: #D5D8D3;
+  --tag: #7B3BB5;
+  --tag-ink: #FFFFFF;
+  --live: #1F7A5A;
+  --dev: #9A6A12;
+  --plan: #5B6470;
+  --shot-bg: #111317;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E0F13; --sheet: #15171F; --ink: #EDEEF2; --ink-2: #878DA0; --rule: #2A2E3B;
+    --tag: #9A4FD8; --tag-ink: #FFFFFF; --live: #3A9161; --dev: #F2C230; --plan: #878DA0; --shot-bg: #08090C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E0F13; --sheet: #15171F; --ink: #EDEEF2; --ink-2: #878DA0; --rule: #2A2E3B;
+  --tag: #9A4FD8; --tag-ink: #FFFFFF; --live: #3A9161; --dev: #F2C230; --plan: #878DA0; --shot-bg: #08090C;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 400 16px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--tag); outline-offset: 3px; }
+
+/* Masthead */
+.mast { display: grid; gap: 20px; border-bottom: 2px solid var(--ink); padding-bottom: 32px; }
+.kicker { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); display: flex; gap: 12px; flex-wrap: wrap; }
+.kicker b { color: var(--tag); font-weight: 500; }
+h1 { font: 800 clamp(36px, 6.4vw, 72px)/0.98 var(--display); font-stretch: 112%; letter-spacing: -0.01em; margin: 0; text-wrap: balance; max-width: 15ch; }
+.lead { font-size: 19px; max-width: 62ch; margin: 0; color: var(--ink); }
+.lead span { color: var(--ink-2); }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); margin-top: 8px; }
+.facts div { padding: 16px 16px 4px 0; display: grid; gap: 2px; }
+.facts div + div { border-left: 1px solid var(--rule); padding-left: 16px; }
+.facts strong { font: 700 30px/1.1 var(--display); font-stretch: 100%; font-variant-numeric: tabular-nums; }
+.facts small { font-size: 13px; color: var(--ink-2); line-height: 1.35; }
+.note { font: 400 13px/1.5 var(--mono); color: var(--ink-2); margin: 0; max-width: 80ch; }
+
+/* Index */
+.index { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border: 1px solid var(--rule); background: var(--sheet); }
+.index a { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 14px 16px; text-decoration: none; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0 -1px -1px 0; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: 3px; }
+.index .no { font: 500 12px/1.6 var(--mono); color: var(--tag); }
+.index .nm { font: 700 16px/1.3 var(--display); font-stretch: 100%; }
+.index .st { grid-column: 2; }
+
+/* Status tags */
+.st { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+.st::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.st.live { color: var(--live); } .st.dev { color: var(--dev); } .st.plan { color: var(--plan); }
+
+/* App sheets */
+.app { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 40px; padding-top: 28px; border-top: 1px solid var(--rule); scroll-margin-top: 24px; }
+.app header { display: grid; gap: 12px; align-content: start; }
+.tagline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.num { background: var(--tag); color: var(--tag-ink); font: 600 12px/1 var(--mono); padding: 6px 8px; letter-spacing: .06em; }
+h2 { font: 800 clamp(26px, 3.2vw, 36px)/1.05 var(--display); font-stretch: 108%; margin: 0; text-wrap: balance; }
+.app p { margin: 0; max-width: 60ch; }
+.stack { font: 400 13px/1.5 var(--mono); color: var(--ink-2); }
+.app h3 { font: 600 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin: 12px 0 0; }
+.app ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.app li::marker { color: var(--tag); }
+.result { border-left: 3px solid var(--tag); padding: 4px 0 4px 14px; font-weight: 500; }
+
+/* Screens */
+.screens { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.screens .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.screens .row.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+figure button { all: unset; cursor: zoom-in; display: block; background: var(--shot-bg); border: 1px solid var(--rule); line-height: 0; }
+figure button:focus-visible { outline: 2px solid var(--tag); outline-offset: 3px; }
+figure img { width: 100%; height: auto; display: block; }
+figcaption { font: 400 12.5px/1.4 var(--body); color: var(--ink-2); }
+figcaption b { color: var(--ink); font-weight: 600; }
+
+.noshot { background: var(--sheet); border: 1px dashed var(--rule); padding: 20px; display: grid; gap: 10px; }
+.noshot .mono { font: 400 12.5px/1.6 var(--mono); color: var(--ink-2); white-space: pre-wrap; overflow-x: auto; }
+
+/* Approach + footer */
+.approach { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.approach div { padding: 20px 20px 0 0; display: grid; gap: 6px; align-content: start; }
+.approach div + div { padding-left: 20px; border-left: 1px solid var(--rule); }
+.approach h3 { font: 700 18px/1.2 var(--display); margin: 0; }
+.approach p { margin: 0; color: var(--ink-2); font-size: 15px; }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font: 400 13px/1.5 var(--mono); color: var(--ink-2); }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; background: rgba(8,9,11,.9); display: grid; place-items: center; z-index: 50;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb[hidden] { display: none; }   /* author display:grid beats the UA [hidden] rule, so state it explicitly */
+.lb figure { max-width: min(1000px, 100%); gap: 10px; }
+.lb img { max-height: 80vh; width: auto; max-width: 100%; margin: 0 auto; }
+.lb figcaption { color: #C9CDD0; text-align: center; font-size: 14px; }
+.lb figcaption b { color: #fff; }
+.lb .close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); background: #fff; color: #111; border: 0; font: 600 13px/1 var(--mono); padding: 10px 12px; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .approach { grid-template-columns: minmax(0, 1fr); }
+  .approach div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+}
+@media (max-width: 560px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts div:nth-child(3) { border-left: 0; padding-left: 0; }
+  .screens .row, .screens .row.two { grid-template-columns: minmax(0, 1fr); }
+  .lead { font-size: 17px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  figure button img { transition: opacity .2s; }
+  figure button:hover img { opacity: .88; }
+}
+
+.site-back { max-width: 1100px; margin: 56px auto 40px; padding-top: 24px;
+  border-top: 1px solid var(--rule); display: flex; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; align-items: center;
+  font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.site-back a { color: var(--tag); text-decoration: none; }
+.site-back a:hover { text-decoration: underline; }
+.site-back span { color: var(--ink-2); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <section class="mast">
+    <div class="kicker"><b>Rue Bix Queue</b><span>Apps</span><span>Power Platform work</span></div>
+    <h1>Quality systems for the factory floor</h1>
+    <p class="lead">Apps, dashboards and automations I built for a mid-size durable-goods manufacturer, on standard Microsoft 365: SharePoint, Power Apps and Power Automate. <span>They took quality from paper sign-off binders to same-day digital records without adding a reporting hour.</span></p>
+    <div class="facts" aria-label="Results in 2026">
+      <div><strong>610</strong><small>production defects logged since July, each tied to a unit serial</small></div>
+      <div><strong>782</strong><small>red tag records covering 2,015 parts</small></div>
+      <div><strong>4,900</strong><small>units traced by model, with assembled and boxed dates</small></div>
+      <div><strong>0</strong><small>added reporting hours — the morning report builds itself</small></div>
+    </div>
+    <p class="note">Screens are real app screens. Company, product, part and people names are placeholders, and every volume and count has been rescaled. The apps and their behaviour are genuine; the figures are not.</p>
+  </section>
+
+  <nav class="index" aria-label="Apps on this page">
+    <a href="#defect-log"><span class="no">01</span><span class="nm">Daily Defect Log</span><span class="st live">Live</span></a>
+    <a href="#daily-report"><span class="no">02</span><span class="nm">Daily Quality Report</span><span class="st live">Live</span></a>
+    <a href="#red-tag-qm"><span class="no">03</span><span class="nm">Red Tag Quality Management</span><span class="st dev">In development</span></a>
+    <a href="#training"><span class="no">04</span><span class="nm">Training Tracker</span><span class="st dev">In development</span></a>
+    <a href="#command-center"><span class="no">05</span><span class="nm">Production Command Center</span><span class="st plan">Built, awaiting licensing</span></a>
+    <a href="#automation"><span class="no">06</span><span class="nm">Data and automation</span><span class="st live">Live</span></a>
+    <a href="#dashboards"><span class="no">07</span><span class="nm">Quality dashboards</span><span class="st live">Live</span></a>
+  </nav>
+
+  <article class="app" id="defect-log">
+    <header>
+      <div class="tagline"><span class="num">01</span><span class="st live">Live since July 2026</span></div>
+      <h2>Daily Defect Log</h2>
+      <p class="stack">Power Apps canvas · SharePoint lists · Power Automate</p>
+      <p>A tablet app the production floor uses to log defects, red tags, and daily built and boxed counts the moment they happen. It replaced paper sign-off binders and feeds two live dashboards.</p>
+      <h3>Features</h3>
+      <ul>
+        <li>Defect entry with unit serial, inspection point, inspector, fix and photos</li>
+        <li>Location choices filtered by product, so entries can't land on the wrong line</li>
+        <li>Production dashboard: rolling 3-day defect rate, built and boxed totals, defects per unit, daily trend and top defect categories</li>
+        <li>Red tag dashboard: top parts, top defects, responsible party, and open tags by age</li>
+        <li>Searchable defect records with product, location, inspector and sort filters</li>
+        <li>One-screen daily counts for assembled and boxed units by product</li>
+        <li>Tool and equipment requests that route to the tool catalog and the engineering board</li>
+        <li>Dark glass interface, readable on the floor's tablets</li>
+      </ul>
+      <p class="result">610 defects in the first three months, all traceable to a unit serial number.</p>
+    </header>
+    <div class="screens">
+      <figure><button type="button" data-full="img/ddl-production-dashboard.jpg"><img src="img/ddl-production-dashboard.jpg" alt="Production defect dashboard with KPI tiles and a daily defect-rate trend" loading="lazy" width="800" height="640"></button><figcaption><b>Production dashboard.</b> Rolling 3-day defect rate, built and boxed totals, and a daily trend.</figcaption></figure>
+      <div class="row">
+        <figure><button type="button" data-full="img/ddl-top-defects.jpg"><img src="img/ddl-top-defects.jpg" alt="Top defect categories ranked with share of all defects" loading="lazy" width="800" height="640"></button><figcaption><b>Top defects.</b> Categories ranked by count and share.</figcaption></figure>
+        <figure><button type="button" data-full="img/ddl-red-tag-aging.jpg"><img src="img/ddl-red-tag-aging.jpg" alt="Red tag dashboard showing open tags grouped by age" loading="lazy" width="800" height="640"></button><figcaption><b>Red tags by age.</b> Open tags grouped 0–7, 8–14, 15–30 and 30+ days.</figcaption></figure>
+        <figure><button type="button" data-full="img/ddl-defect-records.jpg"><img src="img/ddl-defect-records.jpg" alt="List of defect records with product, location, inspector and time" loading="lazy" width="800" height="640"></button><figcaption><b>Defect records.</b> Filter by product, location and inspector.</figcaption></figure>
+      </div>
+      <div class="row">
+        <figure><button type="button" data-full="img/ddl-defect-form.jpg"><img src="img/ddl-defect-form.jpg" alt="Defect entry form with product, location, serial number and defect fields" loading="lazy" width="800" height="640"></button><figcaption><b>Defect entry.</b> Product-filtered locations and serial capture.</figcaption></figure>
+        <figure><button type="button" data-full="img/ddl-assembly-count.jpg"><img src="img/ddl-assembly-count.jpg" alt="Daily assembly count screen with one row per product" loading="lazy" width="800" height="640"></button><figcaption><b>Daily counts.</b> Assembled units by product, one screen.</figcaption></figure>
+        <figure><button type="button" data-full="img/ddl-equipment-request.jpg"><img src="img/ddl-equipment-request.jpg" alt="Tool and equipment request form" loading="lazy" width="800" height="640"></button><figcaption><b>Equipment requests.</b> Tools, fixtures and test gear.</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="app" id="daily-report">
+    <header>
+      <div class="tagline"><span class="num">02</span><span class="st live">Live</span></div>
+      <h2>Daily Quality Report</h2>
+      <p class="stack">Power Automate · SharePoint · Outlook</p>
+      <p>A scheduled flow that emails the team every morning with the previous day's numbers, so nobody builds a report by hand.</p>
+      <h3>Features</h3>
+      <ul>
+        <li>Units built and boxed, defects and red tags for the day</li>
+        <li>Defects grouped by inspection point, with the busiest station first</li>
+        <li>Sorted, formatted HTML tables built inside the flow</li>
+      </ul>
+      <p class="result">Same-day visibility for supervisors with zero manual prep.</p>
+    </header>
+    <div class="screens">
+      <div class="noshot">
+        <strong>How the flow runs</strong>
+        <div class="mono">Recurrence, every weekday morning
+  → Get items: yesterday's defects, red tags and unit counts
+  → Group and count by inspection point and category
+  → Build sorted HTML tables
+  → Send email to the quality and production team</div>
+      </div>
+      <figure><button type="button" data-full="img/ddl-menu.jpg"><img src="img/ddl-menu.jpg" alt="Daily Defect Log navigation menu listing every screen" loading="lazy" width="800" height="640"></button><figcaption><b>Where the data comes from.</b> Every screen in the Daily Defect Log writes to the lists the report reads.</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="app" id="red-tag-qm">
+    <header>
+      <div class="tagline"><span class="num">03</span><span class="st dev">In development</span></div>
+      <h2>Red Tag Quality Management</h2>
+      <p class="stack">Power Apps · six SharePoint lists · Power Automate</p>
+      <p>The next stage for nonconforming parts: one app that carries a red tag from submission through investigation, disposition, corrective action and closure.</p>
+      <h3>Features</h3>
+      <ul>
+        <li>Live quality dashboard: red tags, unresolved count, affected quantity, assembled vs boxed</li>
+        <li>Red tags charted by product and by part</li>
+        <li>Investigation, disposition and verification steps with owners</li>
+        <li>Master parts list and a review queue for legacy imports</li>
+      </ul>
+      <p class="result">Built on the cleaned red tag data: part numbers standardized against the BOMs and reported by quantity affected.</p>
+    </header>
+    <div class="screens">
+      <figure><button type="button" data-full="img/rtqm-dashboard.jpg"><img src="img/rtqm-dashboard.jpg" alt="Quality operations dashboard with navigation and KPI cards" loading="lazy" width="776" height="615"></button><figcaption><b>Quality operations.</b> Live counts from six connected SharePoint lists.</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="app" id="training">
+    <header>
+      <div class="tagline"><span class="num">04</span><span class="st dev">In development</span></div>
+      <h2>Training Tracker</h2>
+      <p class="stack">Power Apps · Dataverse</p>
+      <p>Certification coverage for the floor: who is trained on what, who can sign others off, and where the gaps are.</p>
+      <h3>Features</h3>
+      <ul>
+        <li>Supervisor overview of active employees and available trainers</li>
+        <li>Digital training sign-offs in place of paper</li>
+        <li>Skills matrix by employee and task</li>
+        <li>Training reports for supervisors</li>
+      </ul>
+    </header>
+    <div class="screens">
+      <figure><button type="button" data-full="img/training-dashboard.jpg"><img src="img/training-dashboard.jpg" alt="Training readiness dashboard with employee and trainer counts" loading="lazy" width="776" height="590"></button><figcaption><b>Training readiness.</b> Coverage at a glance, with shortcuts to log training or open the matrix.</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="app" id="command-center">
+    <header>
+      <div class="tagline"><span class="num">05</span><span class="st plan">Built, awaiting licensing</span></div>
+      <h2>Production Command Center</h2>
+      <p class="stack">Power Apps · Dataverse · Power Automate sync to SharePoint</p>
+      <p>A planning app for managers that assigns work by each person's certifications and available time, and refines cycle times with a built-in timer.</p>
+      <h3>Features</h3>
+      <ul>
+        <li>Role-based sign-in: production, inventory and admin views</li>
+        <li>Work assignments generated from certifications and available hours</li>
+        <li>Database of jobs, people, BOMs, tools, fixtures, test equipment and work cells</li>
+        <li>Production kiosk with a task timer for cycle-time data</li>
+        <li>Training sign-off, a certification matrix and an inventory picking kiosk</li>
+        <li>Two-way sync of tools and fixtures with the SharePoint catalog</li>
+      </ul>
+      <p class="result">Licensing plan written: Premium for a handful of managers, standard licenses for the floor.</p>
+    </header>
+    <div class="screens">
+      <figure><button type="button" data-full="img/pcc-dashboard.jpg"><img src="img/pcc-dashboard.jpg" alt="Command center dashboard with tasks, employees, parts to pick, assignments and offline items" loading="lazy" width="776" height="615"></button><figcaption><b>Admin dashboard.</b> Tasks, employees, parts to pick, generated assignments and offline captures.</figcaption></figure>
+      <div class="row">
+        <figure><button type="button" data-full="img/pcc-production-kiosk.jpg"><img src="img/pcc-production-kiosk.jpg" alt="Production kiosk with a task timer and worker selection" loading="lazy" width="776" height="615"></button><figcaption><b>Production kiosk.</b> Task timer for cycle times and completed quantities.</figcaption></figure>
+        <figure><button type="button" data-full="img/pcc-menu.jpg"><img src="img/pcc-menu.jpg" alt="Command center menu listing tasks, sign-off, training matrix, production, inventory kiosk and catalogs" loading="lazy" width="776" height="615"></button><figcaption><b>Modules.</b> Tasks, sign-off, training matrix, inventory and catalogs.</figcaption></figure>
+        <figure><button type="button" data-full="img/pcc-sign-in.jpg"><img src="img/pcc-sign-in.jpg" alt="Employee sign-in screen with initials and PIN" loading="lazy" width="776" height="615"></button><figcaption><b>Sign-in.</b> Initials and PIN route each person to their view.</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="app" id="automation">
+    <header>
+      <div class="tagline"><span class="num">06</span><span class="st live">Live</span></div>
+      <h2>Data and automation</h2>
+      <p class="stack">SharePoint · Power Automate · scripting</p>
+      <p>The plumbing behind the apps: clean reference data and the jobs that keep it current.</p>
+    </header>
+    <div class="screens">
+      <div class="noshot">
+        <ul>
+          <li><b>Unit Log.</b> Every unit since December 2025 by model and configuration, with assembled and boxed dates.</li>
+          <li><b>Morning unit setup.</b> The day's production units are created in the build-sheet system in one step instead of one at a time.</li>
+          <li><b>Master Parts List.</b> Material cost and quantity per unit on every part, so scrap and vendor credits can be priced.</li>
+          <li><b>Change tracking.</b> 30+ engineering changes in 2026 traced to the first affected serial number through the change request process.</li>
+          <li><b>Fixture requests.</b> Repair and new-fixture requests routed straight to the engineering team's board.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article class="app" id="dashboards">
+    <header>
+      <div class="tagline"><span class="num">07</span><span class="st live">Live</span></div>
+      <h2>Quality dashboards</h2>
+      <p class="stack">HTML · JavaScript · live SharePoint data</p>
+      <p>Browser dashboards that read the defect, red tag and unit-count lists directly, for managers who don't use Power BI. They open from the quality team's SharePoint site, with no extra licenses.</p>
+      <h3>Features</h3>
+      <ul>
+        <li>Filters for product, location, date range and sort order</li>
+        <li>Defects per affected unit, calculated from unit serial numbers</li>
+        <li>Product comparison of built, boxed and defect rates</li>
+        <li>Daily built and boxed volume against the rolling 3-day defect rate</li>
+        <li>Red tags by responsible party and the top 20 parts by affected units</li>
+        <li>Sortable issue records with part number and part name search</li>
+      </ul>
+      <p class="result">782 red tag issues and 2,015 affected units in one filterable view.</p>
+    </header>
+    <div class="screens">
+      <figure><button type="button" data-full="img/html-quality-dashboard.jpg"><img src="img/html-quality-dashboard.jpg" alt="Quality defect trend dashboard with filters, KPI cards and a product comparison table" loading="lazy" width="548" height="535"></button><figcaption><b>Quality defect trend.</b> Filters, KPI cards and a product comparison.</figcaption></figure>
+      <div class="row two">
+        <figure><button type="button" data-full="img/html-quality-chart.jpg"><img src="img/html-quality-chart.jpg" alt="Daily chart of built and boxed units with the rolling 3-day defect rate" loading="lazy" width="530" height="313"></button><figcaption><b>Daily snapshot.</b> Built and boxed bars with the 3-day defect rate line.</figcaption></figure>
+        <figure><button type="button" data-full="img/html-red-tag-dashboard.jpg"><img src="img/html-red-tag-dashboard.jpg" alt="Red tag dashboard with filters, KPI cards, a responsible-party donut chart and top parts" loading="lazy" width="574" height="623"></button><figcaption><b>Red Tag Dashboard.</b> Responsible party and top parts by affected units.</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <section class="approach" aria-label="How I build">
+    <div><h3>Standard licensing first</h3><p>SharePoint as the data layer and standard connectors, so the floor can use the apps without per-user premium costs.</p></div>
+    <div><h3>Built for the floor</h3><p>Tablet-first screens with short, filtered choices, so entries are fast and land on the right product and line.</p></div>
+    <div><h3>Every record tied to a unit</h3><p>Serial-level traceability for defects, changes, rework and boxed dates, so quality can be measured per model.</p></div>
+  </section>
+
+  <footer>
+    <span>Joseph Decordre · Quality and manufacturing systems</span>
+    <span>St. Petersburg, Florida</span>
+  </footer>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screenshot">
+  <button class="close" type="button" id="lb-close">Close</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</div>
+
+<script>
+(function () {
+  var lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap'), last = null;
+  function open(btn) {
+    last = btn;
+    var src = btn.querySelector('img');
+    img.src = btn.getAttribute('data-full');
+    img.alt = src.alt;
+    cap.innerHTML = btn.parentNode.querySelector('figcaption').innerHTML;
+    lb.hidden = false;
+    document.getElementById('lb-close').focus();
+  }
+  function close() { lb.hidden = true; img.removeAttribute('src'); if (last) last.focus(); }
+  document.querySelectorAll('figure button[data-full]').forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+  document.getElementById('lb-close').addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+})();
+</script>
+<footer class="site-back">
+  <a href="/">&larr; Rue Bix Queue</a>
+  <span>Power Platform &amp; app development &middot; St. Petersburg, FL</span>
+</footer>
+
+</body>
+</html>
