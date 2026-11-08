@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rue Bix Queue Creative Apps</title>
+<meta name="description" content="Creative apps from Rue Bix Queue, made for music and play.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a spec-sheet portfolio. Narrow text column beside wide screenshots; each app is a numbered "sheet" with a status tag. */
+:root {
+  --paper: #F2F3F0;
+  --sheet: #FBFBF9;
+  --ink: #16191B;
+  --ink-2: #4A5258;
+  --rule: #D5D8D3;
+  --tag: #7B3BB5;
+  --tag-ink: #FFFFFF;
+  --live: #1F7A5A;
+  --dev: #9A6A12;
+  --plan: #5B6470;
+  --shot-bg: #111317;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E0F13; --sheet: #15171F; --ink: #EDEEF2; --ink-2: #878DA0; --rule: #2A2E3B;
+    --tag: #9A4FD8; --tag-ink: #FFFFFF; --live: #3A9161; --dev: #F2C230; --plan: #878DA0; --shot-bg: #08090C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E0F13; --sheet: #15171F; --ink: #EDEEF2; --ink-2: #878DA0; --rule: #2A2E3B;
+  --tag: #9A4FD8; --tag-ink: #FFFFFF; --live: #3A9161; --dev: #F2C230; --plan: #878DA0; --shot-bg: #08090C;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 400 16px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--tag); outline-offset: 3px; }
+
+/* Masthead */
+.mast { display: grid; gap: 20px; border-bottom: 2px solid var(--ink); padding-bottom: 32px; }
+.kicker { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); display: flex; gap: 12px; flex-wrap: wrap; }
+.kicker b { color: var(--tag); font-weight: 500; }
+h1 { font: 800 clamp(36px, 6.4vw, 72px)/0.98 var(--display); font-stretch: 112%; letter-spacing: -0.01em; margin: 0; text-wrap: balance; max-width: 15ch; }
+.lead { font-size: 19px; max-width: 62ch; margin: 0; color: var(--ink); }
+.lead span { color: var(--ink-2); }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); margin-top: 8px; }
+.facts div { padding: 16px 16px 4px 0; display: grid; gap: 2px; }
+.facts div + div { border-left: 1px solid var(--rule); padding-left: 16px; }
+.facts strong { font: 700 30px/1.1 var(--display); font-stretch: 100%; font-variant-numeric: tabular-nums; }
+.facts small { font-size: 13px; color: var(--ink-2); line-height: 1.35; }
+.note { font: 400 13px/1.5 var(--mono); color: var(--ink-2); margin: 0; max-width: 80ch; }
+
+/* Index */
+.index { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border: 1px solid var(--rule); background: var(--sheet); }
+.index a { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 14px 16px; text-decoration: none; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0 -1px -1px 0; }
+.index a:hover .nm { text-decoration: underline; text-underline-offset: 3px; }
+.index .no { font: 500 12px/1.6 var(--mono); color: var(--tag); }
+.index .nm { font: 700 16px/1.3 var(--display); font-stretch: 100%; }
+.index .st { grid-column: 2; }
+
+/* Status tags */
+.st { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+.st::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.st.live { color: var(--live); } .st.dev { color: var(--dev); } .st.plan { color: var(--plan); }
+
+/* App sheets */
+.app { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 40px; padding-top: 28px; border-top: 1px solid var(--rule); scroll-margin-top: 24px; }
+.app header { display: grid; gap: 12px; align-content: start; }
+.tagline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.num { background: var(--tag); color: var(--tag-ink); font: 600 12px/1 var(--mono); padding: 6px 8px; letter-spacing: .06em; }
+h2 { font: 800 clamp(26px, 3.2vw, 36px)/1.05 var(--display); font-stretch: 108%; margin: 0; text-wrap: balance; }
+.app p { margin: 0; max-width: 60ch; }
+.stack { font: 400 13px/1.5 var(--mono); color: var(--ink-2); }
+.app h3 { font: 600 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin: 12px 0 0; }
+.app ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.app li::marker { color: var(--tag); }
+.result { border-left: 3px solid var(--tag); padding: 4px 0 4px 14px; font-weight: 500; }
+
+/* Screens */
+.screens { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.screens .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.screens .row.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+figure button { all: unset; cursor: zoom-in; display: block; background: var(--shot-bg); border: 1px solid var(--rule); line-height: 0; }
+figure button:focus-visible { outline: 2px solid var(--tag); outline-offset: 3px; }
+figure img { width: 100%; height: auto; display: block; }
+figcaption { font: 400 12.5px/1.4 var(--body); color: var(--ink-2); }
+figcaption b { color: var(--ink); font-weight: 600; }
+
+.noshot { background: var(--sheet); border: 1px dashed var(--rule); padding: 20px; display: grid; gap: 10px; }
+.noshot .mono { font: 400 12.5px/1.6 var(--mono); color: var(--ink-2); white-space: pre-wrap; overflow-x: auto; }
+
+/* Approach + footer */
+.approach { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.approach div { padding: 20px 20px 0 0; display: grid; gap: 6px; align-content: start; }
+.approach div + div { padding-left: 20px; border-left: 1px solid var(--rule); }
+.approach h3 { font: 700 18px/1.2 var(--display); margin: 0; }
+.approach p { margin: 0; color: var(--ink-2); font-size: 15px; }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font: 400 13px/1.5 var(--mono); color: var(--ink-2); }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; background: rgba(8,9,11,.9); display: grid; place-items: center; z-index: 50;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb[hidden] { display: none; }   /* author display:grid beats the UA [hidden] rule, so state it explicitly */
+.lb figure { max-width: min(1000px, 100%); gap: 10px; }
+.lb img { max-height: 80vh; width: auto; max-width: 100%; margin: 0 auto; }
+.lb figcaption { color: #C9CDD0; text-align: center; font-size: 14px; }
+.lb figcaption b { color: #fff; }
+.lb .close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); background: #fff; color: #111; border: 0; font: 600 13px/1 var(--mono); padding: 10px 12px; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .approach { grid-template-columns: minmax(0, 1fr); }
+  .approach div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+}
+@media (max-width: 560px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts div:nth-child(3) { border-left: 0; padding-left: 0; }
+  .screens .row, .screens .row.two { grid-template-columns: minmax(0, 1fr); }
+  .lead { font-size: 17px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  figure button img { transition: opacity .2s; }
+  figure button:hover img { opacity: .88; }
+}
+
+/* Beyond M365 */
+.divider { border-top: 2px solid var(--ink); padding-top: 18px; display: grid; gap: 6px; }
+.divider span { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--tag); }
+.pitch { font: 600 19px/1.4 var(--body); margin: 0; }
+.divider p { margin: 0; font: 700 clamp(20px, 2.4vw, 26px)/1.2 var(--display); max-width: 40ch; }
+.phones figure button { border-radius: 14px; overflow: hidden; }
+@media (max-width: 560px) { .phones .screens .row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.appicon { width: 72px; height: 72px; border-radius: 16px; display: block; }
+
+.site-back { max-width: 1100px; margin: 56px auto 40px; padding-top: 24px;
+  border-top: 1px solid var(--rule); display: flex; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; align-items: center;
+  font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.site-back a { color: var(--tag); text-decoration: none; }
+.site-back a:hover { text-decoration: underline; }
+.site-back span { color: var(--ink-2); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <section class="mast">
+    <div class="kicker"><b>Rue Bix Queue</b><span>Creative apps</span><span>Music &amp; play</span></div>
+    <h1>Apps for making music and having fun</h1>
+    <p class="lead">Apps built for play, not for the office. <span>Hello World is the first, and more are on the way.</span></p>
+  </section>
+
+  <nav class="index" aria-label="Apps on this page">
+    <a href="#hello-world"><span class="no">01</span><span class="nm">Hello World</span><span class="st dev">In development</span></a>
+  </nav>
+
+  <article class="app phones" id="hello-world">
+    <header>
+      <img class="appicon" src="img/hw-icon.jpg" alt="Hello World app icon: a white H with a flat symbol inside a ring of rainbow sound bars" width="72" height="72">
+      <div class="tagline"><span class="num">01</span><span class="st dev">In development · running on iPhone</span></div>
+      <h2>Hello World</h2>
+      <p class="pitch">An app created for casual play and serious musicians.</p>
+      <p class="stack">HTML · JavaScript · Web Audio · Capacitor · Swift · CoreMIDI</p>
+      <p>Type a word and hear its song. Hello World lines the alphabet up with the piano, starting at the lowest key, so every letter becomes a chord and every word becomes a chord progression. It started as a childhood idea and is now a native iPhone app.</p>
+      <h3>Features</h3>
+      <ul>
+        <li>Each letter is a chord; repeated notes move through major, minor and seventh variants, with rules you can change</li>
+        <li>Stay in key, block chords, arpeggios or rhythmic pulses, and per-chord lengths that fit the loop to even bars</li>
+        <li>Eight synthesized instruments, from piano to an 80s polysynth and a palm-muted metal guitar, plus drums and tempo control</li>
+        <li>Mixer with reverb, tempo-synced delay and a gated snare reverb</li>
+        <li>Song mode: chain words into a timeline and drag to reorder</li>
+        <li>MIDI export, Bluetooth MIDI and DAW clock sync</li>
+        <li>Video export for social media, with a visualizer that lights each letter's chord as it plays</li>
+        <li>Eleven app languages and nine alphabets, including right-to-left Arabic</li>
+      </ul>
+      <p class="result">Every sound is synthesized live on the phone. There are no audio samples in the app.</p>
+    </header>
+    <div class="screens">
+      <div class="row">
+        <figure><button type="button" data-full="img/hw-main.jpg"><img src="img/hw-main.jpg" alt="Hello World main screen with HELLO WORLD typed, transport buttons, settings icons and a piano keyboard showing a chord" loading="lazy" width="600" height="1299"></button><figcaption><b>Type a word.</b> The progression plays, looping, with the chord shown on the keyboard.</figcaption></figure>
+        <figure><button type="button" data-full="img/hw-chords.jpg"><img src="img/hw-chords.jpg" alt="Grid of colourful chord cards, one per letter, each with its chord name, notes and length" loading="lazy" width="600" height="1299"></button><figcaption><b>Chord cards.</b> One per letter, with Roman numerals and adjustable lengths.</figcaption></figure>
+        <figure><button type="button" data-full="img/hw-visualizer.jpg"><img src="img/hw-visualizer.jpg" alt="Share screen showing a vertical video visualizer with letter tiles and a glowing chord ring" loading="lazy" width="600" height="1299"></button><figcaption><b>Visualizer video.</b> Letters light up with their chords, ready to post.</figcaption></figure>
+      </div>
+      <div class="row">
+        <figure><button type="button" data-full="img/hw-sound.jpg"><img src="img/hw-sound.jpg" alt="Sound settings sheet with play style, instrument, register, octave and chord length" loading="lazy" width="600" height="1299"></button><figcaption><b>Sound.</b> Style, instrument, octave and chord length.</figcaption></figure>
+        <figure><button type="button" data-full="img/hw-mixer.jpg"><img src="img/hw-mixer.jpg" alt="Mixer sheet with faders for instrument, bass, drums, click and master, and effect knobs" loading="lazy" width="600" height="1299"></button><figcaption><b>Mixer.</b> Levels and effects per part.</figcaption></figure>
+        <figure><button type="button" data-full="img/hw-song.jpg"><img src="img/hw-song.jpg" alt="Song timeline with word blocks and repeat counts" loading="lazy" width="600" height="1299"></button><figcaption><b>Song mode.</b> Word blocks with repeats, in any order.</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <span>Joseph Decordre · Rue Bix Queue</span>
+    <span>St. Petersburg, Florida</span>
+  </footer>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screenshot">
+  <button class="close" type="button" id="lb-close">Close</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</div>
+
+<script>
+(function () {
+  var lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap'), last = null;
+  function open(btn) {
+    last = btn;
+    var src = btn.querySelector('img');
+    img.src = btn.getAttribute('data-full');
+    img.alt = src.alt;
+    cap.innerHTML = btn.parentNode.querySelector('figcaption').innerHTML;
+    lb.hidden = false;
+    document.getElementById('lb-close').focus();
+  }
+  function close() { lb.hidden = true; img.removeAttribute('src'); if (last) last.focus(); }
+  document.querySelectorAll('figure button[data-full]').forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+  document.getElementById('lb-close').addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+})();
+</script>
+<footer class="site-back">
+  <a href="/">&larr; Rue Bix Queue</a>
+  <a href="/apps/">Business apps &rarr;</a>
+</footer>
+
+</body>
+</html>
