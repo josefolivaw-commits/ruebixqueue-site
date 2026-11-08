@@ -137,14 +137,6 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; ju
   figure button:hover img { opacity: .88; }
 }
 
-/* Beyond M365 */
-.divider { border-top: 2px solid var(--ink); padding-top: 18px; display: grid; gap: 6px; }
-.divider span { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--tag); }
-.divider p { margin: 0; font: 700 clamp(20px, 2.4vw, 26px)/1.2 var(--display); max-width: 40ch; }
-.phones figure button { border-radius: 14px; overflow: hidden; }
-@media (max-width: 560px) { .phones .screens .row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.appicon { width: 72px; height: 72px; border-radius: 16px; display: block; }
-
 .site-back { max-width: 1100px; margin: 56px auto 40px; padding-top: 24px;
   border-top: 1px solid var(--rule); display: flex; justify-content: space-between;
   gap: 16px; flex-wrap: wrap; align-items: center;
@@ -158,7 +150,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; ju
 
 <div class="wrap">
   <section class="mast">
-    <div class="kicker"><b>Rue Bix Queue</b><span>Apps</span><span>Power Platform work</span><span>Mobile &amp; music</span></div>
+    <div class="kicker"><b>Rue Bix Queue</b><span>Apps</span><span>Power Platform work</span></div>
     <h1>Quality systems for the factory floor</h1>
     <p class="lead">Apps, dashboards and automations I built for a mid-size durable-goods manufacturer, on standard Microsoft 365: SharePoint, Power Apps and Power Automate. <span>They took quality from paper sign-off binders to same-day digital records without adding a reporting hour.</span></p>
     <div class="facts" aria-label="Results in 2026">
@@ -178,7 +170,6 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; ju
     <a href="#command-center"><span class="no">05</span><span class="nm">Production Command Center</span><span class="st plan">Built, awaiting licensing</span></a>
     <a href="#automation"><span class="no">06</span><span class="nm">Data and automation</span><span class="st live">Live</span></a>
     <a href="#dashboards"><span class="no">07</span><span class="nm">Quality dashboards</span><span class="st live">Live</span></a>
-    <a href="#hello-world"><span class="no">08</span><span class="nm">Hello World</span><span class="st dev">In development</span></a>
   </nav>
 
   <article class="app" id="defect-log">
@@ -360,44 +351,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; ju
     <div><h3>Every record tied to a unit</h3><p>Serial-level traceability for defects, changes, rework and boxed dates, so quality can be measured per model.</p></div>
   </section>
 
-  <div class="divider"><span>Beyond Microsoft 365</span><p>The first app built outside Microsoft&nbsp;365, and the first one for music.</p></div>
-
-  <article class="app phones" id="hello-world">
-    <header>
-      <img class="appicon" src="img/hw-icon.jpg" alt="Hello World app icon: a white letter A inside a ring of rainbow sound bars" width="72" height="72">
-      <div class="tagline"><span class="num">08</span><span class="st dev">In development · running on iPhone</span></div>
-      <h2>Hello World</h2>
-      <p class="stack">HTML · JavaScript · Web Audio · Capacitor · Swift · CoreMIDI</p>
-      <p>Type a word and hear its song. Hello World lines the alphabet up with the piano, starting at the lowest key, so every letter becomes a chord and every word becomes a chord progression. It started as a childhood idea and is now a native iPhone app.</p>
-      <h3>Features</h3>
-      <ul>
-        <li>Each letter is a chord; repeated notes move through major, minor and seventh variants, with rules you can change</li>
-        <li>Stay in key, block chords, arpeggios or rhythmic pulses, and per-chord lengths that fit the loop to even bars</li>
-        <li>Eight synthesized instruments, from piano to an 80s polysynth and a palm-muted metal guitar, plus drums and tempo control</li>
-        <li>Mixer with reverb, tempo-synced delay and a gated snare reverb</li>
-        <li>Song mode: chain words into a timeline and drag to reorder</li>
-        <li>MIDI export, Bluetooth MIDI and DAW clock sync</li>
-        <li>Video export for social media, with a visualizer that lights each letter's chord as it plays</li>
-        <li>Eleven app languages and nine alphabets, including right-to-left Arabic</li>
-      </ul>
-      <p class="result">Every sound is synthesized live on the phone. There are no audio samples in the app.</p>
-    </header>
-    <div class="screens">
-      <div class="row">
-        <figure><button type="button" data-full="img/hw-main.jpg"><img src="img/hw-main.jpg" alt="Hello World main screen with HELLO WORLD typed, transport buttons, settings icons and a piano keyboard showing a chord" loading="lazy" width="600" height="1299"></button><figcaption><b>Type a word.</b> The progression plays, looping, with the chord shown on the keyboard.</figcaption></figure>
-        <figure><button type="button" data-full="img/hw-chords.jpg"><img src="img/hw-chords.jpg" alt="Grid of colourful chord cards, one per letter, each with its chord name, notes and length" loading="lazy" width="600" height="1299"></button><figcaption><b>Chord cards.</b> One per letter, with Roman numerals and adjustable lengths.</figcaption></figure>
-        <figure><button type="button" data-full="img/hw-visualizer.jpg"><img src="img/hw-visualizer.jpg" alt="Share screen showing a vertical video visualizer with letter tiles and a glowing chord ring" loading="lazy" width="600" height="1299"></button><figcaption><b>Visualizer video.</b> Letters light up with their chords, ready to post.</figcaption></figure>
-      </div>
-      <div class="row">
-        <figure><button type="button" data-full="img/hw-sound.jpg"><img src="img/hw-sound.jpg" alt="Sound settings sheet with play style, instrument, register, octave and chord length" loading="lazy" width="600" height="1299"></button><figcaption><b>Sound.</b> Style, instrument, octave and chord length.</figcaption></figure>
-        <figure><button type="button" data-full="img/hw-mixer.jpg"><img src="img/hw-mixer.jpg" alt="Mixer sheet with faders for instrument, bass, drums, click and master, and effect knobs" loading="lazy" width="600" height="1299"></button><figcaption><b>Mixer.</b> Levels and effects per part.</figcaption></figure>
-        <figure><button type="button" data-full="img/hw-song.jpg"><img src="img/hw-song.jpg" alt="Song timeline with word blocks and repeat counts" loading="lazy" width="600" height="1299"></button><figcaption><b>Song mode.</b> Word blocks with repeats, in any order.</figcaption></figure>
-      </div>
-    </div>
-  </article>
-
   <footer>
-    <span>Joseph Decordre · Quality systems and apps</span>
+    <span>Joseph Decordre · Quality and manufacturing systems</span>
     <span>St. Petersburg, Florida</span>
   </footer>
 </div>
@@ -428,7 +383,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; ju
 </script>
 <footer class="site-back">
   <a href="/">&larr; Rue Bix Queue</a>
-  <span>Power Platform &amp; app development &middot; St. Petersburg, FL</span>
+  <a href="/creative-apps/">Creative apps &rarr;</a>
 </footer>
 
 </body>
