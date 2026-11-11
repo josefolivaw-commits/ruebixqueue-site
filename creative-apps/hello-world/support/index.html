@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hello World Support · Rue Bix Queue</title>
+<meta name="description" content="Help and contact for the Hello World app by Rue Bix Queue LLC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper: #F2F3F0;
+  --sheet: #FBFBF9;
+  --ink: #16191B;
+  --ink-2: #4A5258;
+  --rule: #D5D8D3;
+  --tag: #7B3BB5;
+  --tag-ink: #FFFFFF;
+  --live: #1F7A5A;
+  --dev: #9A6A12;
+  --plan: #5B6470;
+  --shot-bg: #111317;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E0F13; --sheet: #15171F; --ink: #EDEEF2; --ink-2: #878DA0; --rule: #2A2E3B;
+    --tag: #9A4FD8; --tag-ink: #FFFFFF; --live: #3A9161; --dev: #F2C230; --plan: #878DA0; --shot-bg: #08090C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E0F13; --sheet: #15171F; --ink: #EDEEF2; --ink-2: #878DA0; --rule: #2A2E3B;
+  --tag: #9A4FD8; --tag-ink: #FFFFFF; --live: #3A9161; --dev: #F2C230; --plan: #878DA0; --shot-bg: #08090C;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.65 var(--body); -webkit-text-size-adjust: 100%; }
+.doc { max-width: 720px; margin: 0 auto; padding: 48px 22px 64px; }
+.kicker { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); display: flex; gap: 10px; flex-wrap: wrap; }
+.kicker b { color: var(--tag); font-weight: 600; }
+h1 { font: 800 clamp(34px, 6vw, 52px)/1.05 var(--display); font-stretch: 85%; margin: 14px 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font: 500 14px var(--mono); margin: 0 0 28px; }
+h2 { font: 700 22px/1.25 var(--display); margin: 34px 0 8px; }
+p, li { max-width: 64ch; }
+ul { padding-left: 1.2em; }
+li { margin: 6px 0; }
+a { color: var(--tag); }
+.box { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; margin: 22px 0; }
+.box p { margin: 0; }
+footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--ink-2); font-size: 14px; }
+footer a { text-decoration: none; }
+</style>
+</head>
+<body>
+<main class="doc">
+<div class="kicker"><b>Hello World</b><span>Support</span></div>
+<h1>Hello World support</h1>
+<p class="meta">Type a word. Hear its song.</p>
+<div class="box"><p>Need help or have an idea? Email <a href="mailto:support@ruebixqueue.com">support@ruebixqueue.com</a>. We usually reply within two business days.</p></div>
+<h2>Common questions</h2>
+<h2 style="font-size:18px">How does a word become chords?</h2>
+<p>The alphabet is lined up with the piano, starting at the lowest key, A. Each letter lands on a note, and each note becomes a chord. Change the key, chord types and rhythm in the settings to hear the same word in new ways.</p>
+<h2 style="font-size:18px">I can’t hear anything</h2>
+<p>Turn up the volume, check the mixer’s Master fader, and if you’re using MIDI out, make sure “Play sound here too” is on.</p>
+<h2 style="font-size:18px">How do I connect a Bluetooth MIDI device?</h2>
+<p>In MIDI out, tap “Bluetooth devices”, pick your device, then choose it as the Output. Set separate channels for the instrument, bass, lead and drums if your gear needs them.</p>
+<h2 style="font-size:18px">My drum machine doesn’t play the snare</h2>
+<p>Some drum machines use their own note numbers. In MIDI, set Drum note map to match your device. Behringer RD-8 and RD-6 are included.</p>
+<h2 style="font-size:18px">How do I save or share a video?</h2>
+<p>Tap Share, choose App view or Visualizer, set the number of loops and tap “Record video”. Recording stops on its own. Then tap “Save / share” to send it to Photos or any app.</p>
+<h2>Privacy</h2>
+<p>Hello World collects no personal data. Read the <a href="/creative-apps/hello-world/privacy/">privacy policy</a>.</p>
+<footer><a href="/creative-apps/#hello-world">&larr; Hello World</a><span>&copy; 2026 Rue Bix Queue LLC</span></footer>
+</main>
+</body>
+</html>
