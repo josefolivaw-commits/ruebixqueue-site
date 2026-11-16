@@ -745,6 +745,8 @@ a.svc:hover .svc__more i{transform:translateX(4px)}
         <label for="msg">What do you need?</label>
         <textarea id="msg" name="message" required></textarea>
       </div>
+      <!-- Spam trap: people never see this field; bots fill it in, and Formspree drops those submissions -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn--solid" type="submit">Send it</button>
     </form>
   </div>
